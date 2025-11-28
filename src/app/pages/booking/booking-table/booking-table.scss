@@ -1,0 +1,63 @@
+.table-container {
+    overflow: auto;
+    background: white;
+    border-radius: 4px;
+
+    ::ng-deep table {
+        width: 100%;
+        min-width: 2000px;
+        // ลบ text-align: center ที่ table ออก (ไม่จำเป็น)
+
+        th.mat-mdc-header-cell {
+            background-color: #f1f1f1;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+
+            // --- ส่วนที่เพิ่ม/แก้ไข ---
+            text-align: center !important;
+            justify-content: center !important; // จำเป็นสำหรับ Flexbox layout
+            padding: 8px 16px; // ปรับ Padding ให้สมดุล
+
+            // กรณีถ้ามีการใช้ Sort Header ในอนาคต ต้องจัด div ข้างในด้วย
+            ::ng-deep .mat-sort-header-container {
+                justify-content: center !important;
+            }
+        }
+
+        td.mat-mdc-cell {
+            font-size: 14px;
+            padding: 8px 16px;
+
+            // --- ส่วนที่เพิ่ม/แก้ไข ---
+            text-align: center !important;
+            justify-content: center !important; // จำเป็นสำหรับ Flexbox layout
+        }
+
+        tr.mat-row:hover {
+            background-color: #f5f5f5;
+        }
+    }
+}
+
+.status-badge {
+    display: inline-flex;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: #333 1px 1px 1px;
+    box-shadow: #333 0.5px 0.5px 0.5px;
+    justify-content: center;
+    min-width: 80px;
+
+    &.status-approve {
+        background-color: #1be64a;
+    }
+
+    &.status-new {
+        background-color: #278fff;
+    }
+}

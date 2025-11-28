@@ -1,0 +1,559 @@
+<div class="booking-form-container">
+    <!-- ============ HEADER SECTION ============ -->
+    <div class="booking-header">
+        <div class="header-left">
+            <div class="header-title">
+                <h1>สร้าง Booking</h1>
+            </div>
+            <div class="booking-type-selector">
+                <mat-button-toggle-group [value]="bookingType()" name="bookingType"
+                    (change)="onBookingTypeChange($event)">
+                    <mat-button-toggle value="FCL">
+                        Import FCL
+                    </mat-button-toggle>
+                    <mat-button-toggle value="LCL">
+                        Import LCL
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+        </div>
+        <div class="header-right">
+            <button mat-raised-button 
+                class="import-btn" [class.import-fcl]="bookingType() === 'FCL'"
+                [class.import-lcl]="bookingType() === 'LCL'">
+                Import {{ bookingType() }}
+            </button>
+        </div>
+    </div>
+
+    <!-- ============ MAIN FORM CARD ============ -->
+    <mat-card class="booking-card">
+        <form [formGroup]="bookingForm" class="booking-form">
+            <!-- ============ BOOKING NO FIELD ============ -->
+            <div class="booking-no-section">
+                <mat-form-field class="booking-no-field">
+                    <mat-label>Booking No.</mat-label>
+                    <input matInput formControlName="bookingNo" placeholder="Booking No." />
+                </mat-form-field>
+            </div>
+
+            <!-- ===== FORM COLUMNS CONTAINER ===== -->
+            <div class="form-columns-container">
+                <!-- ===== COLUMN 1: BOOKING DETAILS ===== -->
+                <div class="form-column">
+                <div class="column-header">
+                    <mat-icon>info</mat-icon>
+                    <span>Booking Details</span>
+                </div>
+
+                <!-- Branch -->
+                <div class="form-field-wrapper">
+                    <label class="field-label required">สาขา</label>
+                    <div class="field-with-button">
+                        <mat-form-field class="custom-field">
+                            <mat-label>สาขา</mat-label>
+                            <mat-select formControlName="branch">
+                                <mat-option value="bkk">Bangkok Head Office</mat-option>
+                                <mat-option value="lch">Laem Chabang</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <button mat-icon-button class="add-btn" type="button" matTooltip="เพิ่มสาขาใหม่">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Customer No -->
+                <div class="form-field-wrapper">
+                    <label class="field-label required">รหัสลูกค้า</label>
+                    <div class="field-with-button">
+                        <mat-form-field class="custom-field">
+                            <mat-label>รหัสลูกค้า</mat-label>
+                            <input matInput formControlName="customerNo" placeholder="รหัสลูกค้า" />
+                        </mat-form-field>
+                        <button mat-icon-button class="add-btn" type="button" matTooltip="เพิ่มลูกค้าใหม่">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Customer Name -->
+                <div class="form-field-wrapper">
+                    <label class="field-label">ชื่อลูกค้า</label>
+                    <mat-form-field class="custom-field disabled-field">
+                        <mat-label>ชื่อลูกค้า</mat-label>
+                        <input matInput formControlName="customerName" placeholder="ชื่อลูกค้า" />
+                    </mat-form-field>
+                </div>
+
+                <!-- MAWB No -->
+                <div class="form-field-wrapper">
+                    <label class="field-label">BL. ลูกค้า</label>
+                    <mat-form-field class="custom-field">
+                        <mat-label>BL. ลูกค้า</mat-label>
+                        <input matInput formControlName="mawbNo" placeholder="BL. ลูกค้า" />
+                    </mat-form-field>
+                </div>
+
+                <!-- HAWB No -->
+                <div class="form-field-wrapper">
+                    <label class="field-label">Sea/MAWM/HAWB NO.</label>
+                    <mat-form-field class="custom-field">
+                        <mat-label>Sea/MAWM/HAWB NO.</mat-label>
+                        <input matInput formControlName="hawbNo" placeholder="Sea/MAWM/HAWB NO." />
+                    </mat-form-field>
+                </div>
+
+                <!-- Port of Loading -->
+                <div class="form-field-wrapper">
+                    <label class="field-label required">เรือออกจากประเทศ</label>
+                    <div class="field-with-button">
+                        <mat-form-field class="custom-field">
+                            <mat-label>เรือออกจากประเทศ</mat-label>
+                            <mat-select formControlName="portOfLoading">
+                                <mat-option value="cn">China</mat-option>
+                                <mat-option value="jp">Japan</mat-option>
+                                <mat-option value="us">USA</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <button mat-icon-button class="add-btn" type="button" matTooltip="เพิ่มประเทศใหม่">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Destination -->
+                <div class="form-field-wrapper">
+                    <label class="field-label required">เรือไปประเทศ</label>
+                    <div class="field-with-button">
+                        <mat-form-field class="custom-field">
+                            <mat-label>เรือไปประเทศ</mat-label>
+                            <mat-select formControlName="destination">
+                                <mat-option value="th">Thailand</mat-option>
+                                <mat-option value="vn">Vietnam</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <button mat-icon-button class="add-btn" type="button" matTooltip="เพิ่มประเทศใหม่">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Origin -->
+                <div class="form-field-wrapper">
+                    <label class="field-label required">Origin</label>
+                    <div class="field-with-button">
+                        <mat-form-field class="custom-field">
+                            <mat-label>Origin</mat-label>
+                            <mat-select formControlName="origin">
+                                <mat-option value="cn">China</mat-option>
+                                <mat-option value="jp">Japan</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <button mat-icon-button class="add-btn" type="button" matTooltip="เพิ่ม Origin ใหม่">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pickup Date & Time -->
+                <div class="form-field-wrapper">
+                    <label class="field-label">Pickup Date</label>
+                    <div class="form-row">
+                        <mat-form-field class="custom-field flex-1">
+                            <mat-label>วันที่</mat-label>
+                            <input matInput [matDatepicker]="pickerPickup" formControlName="pickupDate" />
+                            <mat-datepicker-toggle matIconSuffix [for]="pickerPickup"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerPickup></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field class="custom-field" style="flex: 0 0 120px">
+                            <mat-label>เวลา</mat-label>
+                            <input matInput type="time" formControlName="pickupTime" />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-- Loading Location -->
+                <div class="form-field-wrapper">
+                    <label class="field-label">สถานที่รับตู้เปล่า</label>
+                    <div class="field-with-button">
+                        <mat-form-field class="custom-field">
+                            <mat-label>สถานที่รับตู้เปล่า</mat-label>
+                            <mat-select formControlName="loadingLocation">
+                                <mat-option value="loc1">Location 1</mat-option>
+                                <mat-option value="loc2">Location 2</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <button mat-icon-button class="add-btn" type="button" matTooltip="เพิ่มสถานที่ใหม่">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Loading Date & Time -->
+                <div class="form-field-wrapper">
+                    <label class="field-label">Loading Date</label>
+                    <div class="form-row">
+                        <mat-form-field class="custom-field flex-1">
+                            <mat-label>วันที่</mat-label>
+                            <input matInput [matDatepicker]="pickerLoading" formControlName="loadingDate" />
+                            <mat-datepicker-toggle matIconSuffix [for]="pickerLoading"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerLoading></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field class="custom-field" style="flex: 0 0 120px">
+                            <mat-label>เวลา</mat-label>
+                            <input matInput type="time" formControlName="loadingTime" />
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== COLUMN 2: SHIPMENT DETAILS ===== -->
+            <div class="form-column">
+                <div class="column-header">
+                    <mat-icon>local_shipping</mat-icon>
+                    <span>Shipment Details</span>
+                </div>
+
+                <!-- Coload (LCL) / Carrier (FCL) -->
+                <div class="form-field-wrapper">
+                    <label class="field-label" [class.required]="isLCL">ชื่อ Coload</label>
+                    <mat-form-field class="custom-field">
+                        <mat-label>ชื่อ Coload</mat-label>
+                        <input matInput [formControlName]="isFCL ? 'carrier' : 'coloadName'" 
+                            placeholder="ชื่อ Coload" />
+                    </mat-form-field>
+                </div>
+
+                <!-- Ship Name -->
+                <div class="form-field-wrapper">
+                    <label class="field-label" [class.required]="isFCL">ชื่อเรือ</label>
+                    <mat-form-field class="custom-field">
+                        <mat-label>ชื่อเรือ</mat-label>
+                        <input matInput formControlName="shipName" placeholder="ชื่อเรือ" />
+                    </mat-form-field>
+                </div>
+
+                <!-- Voy/Flight No -->
+                <div class="form-field-wrapper">
+                    <label class="field-label">เที่ยวเรือ</label>
+                    <mat-form-field class="custom-field">
+                        <mat-label>เที่ยวเรือ</mat-label>
+                        <input matInput formControlName="voyFlightNo" placeholder="เที่ยวเรือ" />
+                    </mat-form-field>
+                </div>
+
+                <!-- ETD Date & Time -->
+                <div class="form-field-wrapper">
+                    <label class="field-label">ETD Date.</label>
+                    <div class="form-row">
+                        <mat-form-field class="custom-field flex-1">
+                            <mat-label>วันที่</mat-label>
+                            <input matInput [matDatepicker]="pickerEtd" formControlName="etdDate" />
+                            <mat-datepicker-toggle matIconSuffix [for]="pickerEtd"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerEtd></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field class="custom-field" style="flex: 0 0 120px">
+                            <mat-label>เวลา</mat-label>
+                            <input matInput type="time" formControlName="etdTime" />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-- Customer Invoice -->
+                <div class="form-field-wrapper">
+                    <label class="field-label">Inv. ลูกค้า</label>
+                    <mat-form-field class="custom-field">
+                        <mat-label>Inv. ลูกค้า</mat-label>
+                        <input matInput formControlName="customerInvoice" placeholder="Inv. ลูกค้า" />
+                    </mat-form-field>
+                </div>
+
+                <!-- FCL: QTY & Container Type -->
+                <ng-container *ngIf="isFCL">
+                    <div class="form-row">
+                        <div class="form-field-wrapper flex-1">
+                            <label class="field-label required">จำนวนตู้</label>
+                            <mat-form-field class="custom-field">
+                                <mat-label>QTY</mat-label>
+                                <input matInput type="number" formControlName="qtyContainers" />
+                            </mat-form-field>
+                        </div>
+                        <div class="form-field-wrapper flex-1">
+                            <label class="field-label required">ขนาดตู้</label>
+                            <mat-form-field class="custom-field">
+                                <mat-label>Container Type</mat-label>
+                                <input matInput formControlName="containerType" placeholder="Container Type" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </ng-container>
+
+                <!-- Cargo Qty -->
+                <div class="form-field-wrapper">
+                    <label class="field-label required">จำนวนสินค้า</label>
+                    <div class="form-row">
+                        <mat-form-field class="custom-field flex-1">
+                            <mat-label>จำนวน</mat-label>
+                            <input matInput type="number" formControlName="cargoQty" placeholder="จำนวนสินค้า" />
+                        </mat-form-field>
+                        <mat-form-field class="custom-field" style="flex: 0 0 120px">
+                            <mat-label>หน่วย</mat-label>
+                            <mat-select formControlName="cargoUnit">
+                                <mat-option value="pcs">Pcs</mat-option>
+                                <mat-option value="ctn">Ctn</mat-option>
+                                <mat-option value="kg">KG</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <button mat-icon-button class="add-btn" type="button" matTooltip="เพิ่มหน่วยใหม่">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Total Weight -->
+                <div class="form-field-wrapper">
+                    <label class="field-label required">น้ำหนักสินค้า</label>
+                    <mat-form-field class="custom-field">
+                        <mat-label>น้ำหนักสินค้า</mat-label>
+                        <input matInput type="number" formControlName="totalWeight" placeholder="น้ำหนักสินค้า" />
+                    </mat-form-field>
+                </div>
+
+                <!-- LCL: Dimension -->
+                <ng-container *ngIf="isLCL">
+                    <div class="form-field-wrapper">
+                        <label class="field-label">ขนาด (W × L × H)</label>
+                        <div class="dimension-inputs">
+                            <mat-form-field class="dim-field">
+                                <mat-label>กว้าง W.</mat-label>
+                                <input matInput type="text" formControlName="dimensionWidth" placeholder="W" />
+                            </mat-form-field>
+                            <span class="dim-separator">×</span>
+                            <mat-form-field class="dim-field">
+                                <mat-label>ยาว L.</mat-label>
+                                <input matInput type="text" formControlName="dimensionLength" placeholder="L" />
+                            </mat-form-field>
+                            <span class="dim-separator">×</span>
+                            <mat-form-field class="dim-field">
+                                <mat-label>สูง H.</mat-label>
+                                <input matInput type="text" formControlName="dimensionHeight" placeholder="H" />
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </ng-container>
+
+                <!-- CBM -->
+                <div class="form-field-wrapper">
+                    <label class="field-label required">CBM</label>
+                    <mat-form-field class="custom-field">
+                        <mat-label>CBM</mat-label>
+                        <input matInput type="number" formControlName="cbm" placeholder="CBM" />
+                    </mat-form-field>
+                </div>
+
+                <!-- Truck Type -->
+                <div class="form-field-wrapper">
+                    <label class="field-label required">ประเภทรถ</label>
+                    <div class="field-with-button">
+                        <mat-form-field class="custom-field">
+                            <mat-label>ประเภทรถ</mat-label>
+                            <mat-select formControlName="truckType">
+                                <mat-option value="4w">4 Wheels</mat-option>
+                                <mat-option value="6w">6 Wheels</mat-option>
+                                <mat-option value="10w">10 Wheels</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <button mat-icon-button class="add-btn" type="button" matTooltip="เพิ่มประเภทรถใหม่">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Cargo Type -->
+                <div class="form-field-wrapper">
+                    <label class="field-label required">ประเภทสินค้า</label>
+                    <div class="field-with-button">
+                        <mat-form-field class="custom-field">
+                            <mat-label>ประเภทสินค้า</mat-label>
+                            <mat-select formControlName="cargoType">
+                                <mat-option value="gen">General</mat-option>
+                                <mat-option value="dg">Dangerous</mat-option>
+                                <mat-option value="fragile">Fragile</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <button mat-icon-button class="add-btn" type="button" matTooltip="เพิ่มประเภทสินค้าใหม่">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Closing VGM -->
+                <div class="form-field-wrapper">
+                    <label class="field-label">Closing VGM</label>
+                    <div class="form-row">
+                        <mat-form-field class="custom-field flex-1">
+                            <mat-label>วันที่</mat-label>
+                            <input matInput [matDatepicker]="pickerVgm" formControlName="closingVgmDate" />
+                            <mat-datepicker-toggle matIconSuffix [for]="pickerVgm"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerVgm></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field class="custom-field" style="flex: 0 0 120px">
+                            <mat-label>เวลา</mat-label>
+                            <input matInput type="time" formControlName="closingVgmTime" />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-- Closing Time -->
+                <div class="form-field-wrapper">
+                    <label class="field-label">Closing Time</label>
+                    <div class="form-row">
+                        <mat-form-field class="custom-field flex-1">
+                            <mat-label>วันที่</mat-label>
+                            <input matInput [matDatepicker]="pickerClosing" formControlName="closingTimeDate" />
+                            <mat-datepicker-toggle matIconSuffix [for]="pickerClosing"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerClosing></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field class="custom-field" style="flex: 0 0 120px">
+                            <mat-label>เวลา</mat-label>
+                            <input matInput type="time" formControlName="closingTimeTime" />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-- Distance -->
+                <div class="form-field-wrapper">
+                    <label class="field-label">ระยะทาง</label>
+                    <mat-form-field class="custom-field">
+                        <mat-label>ระยะทาง</mat-label>
+                        <input matInput type="number" formControlName="distance" placeholder="ระยะทาง" />
+                        <span matSuffix>km</span>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <!-- ===== COLUMN 3: CONTACT & BILLING ===== -->
+            <div class="form-column">
+                <div class="column-header">
+                    <mat-icon>receipt</mat-icon>
+                    <span>Contact & Billing</span>
+                </div>
+
+                <!-- FCL: Container Return Location -->
+                <ng-container *ngIf="isFCL">
+                    <div class="form-field-wrapper">
+                        <label class="field-label">สถานที่รับตู้เปล่า</label>
+                        <div class="field-with-button">
+                            <mat-form-field class="custom-field">
+                                <mat-label>สถานที่รับตู้เปล่า</mat-label>
+                                <mat-select formControlName="containerReturnLoc">
+                                    <mat-option value="loc1">Location 1</mat-option>
+                                    <mat-option value="loc2">Location 2</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <button mat-icon-button class="add-btn" type="button" matTooltip="เพิ่มสถานที่ใหม่">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </ng-container>
+
+                <!-- Contact -->
+                <div class="form-field-wrapper">
+                    <label class="field-label">ชื่อผู้ติดต่อ</label>
+                    <mat-form-field class="custom-field">
+                        <mat-label>ชื่อผู้ติดต่อ</mat-label>
+                        <input matInput formControlName="contact" placeholder="ชื่อผู้ติดต่อ" />
+                    </mat-form-field>
+                </div>
+
+                <!-- Phone -->
+                <div class="form-field-wrapper">
+                    <label class="field-label">เบอร์โทร</label>
+                    <mat-form-field class="custom-field">
+                        <mat-label>เบอร์โทร</mat-label>
+                        <input matInput formControlName="phone" placeholder="เบอร์โทร" />
+                    </mat-form-field>
+                </div>
+
+                <!-- Remarks -->
+                <div class="form-field-wrapper">
+                    <label class="field-label">หมายเหตุ</label>
+                    <mat-form-field class="custom-field">
+                        <mat-label>หมายเหตุ</mat-label>
+                        <textarea matInput rows="4" formControlName="remarks" placeholder="หมายเหตุ"></textarea>
+                    </mat-form-field>
+                </div>
+
+                <!-- Billing Address -->
+                <div class="form-field-wrapper">
+                    <label class="field-label">ที่อยู่ในการออกบิล</label>
+                    <mat-form-field class="custom-field billing-field">
+                        <mat-label>ที่อยู่ในการออกบิล</mat-label>
+                        <textarea matInput rows="4" formControlName="billingAddress" 
+                            placeholder="ที่อยู่ในการออกบิล"></textarea>
+                    </mat-form-field>
+                </div>
+
+                <!-- Transport Charge -->
+                <div class="form-field-wrapper">
+                    <label class="field-label">ค่ารถที่เก็บลูกค้า</label>
+                    <mat-form-field class="custom-field">
+                        <mat-label>ค่ารถที่เก็บลูกค้า</mat-label>
+                        <input matInput type="number" formControlName="transportCharge" placeholder="0.00" />
+                        <span matSuffix>฿</span>
+                    </mat-form-field>
+                </div>
+
+                <!-- Attachments -->
+                <div class="attachment-box" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+                    <div class="attachment-header">
+                        <mat-icon>attach_file</mat-icon>
+                        <span>เอกสารแนบ</span>
+                    </div>
+
+                    <label class="upload-area">
+                        <input type="file" multiple hidden (change)="onFileSelected($event)" />
+                        <button mat-stroked-button type="button" class="choose-file-btn">
+                            <mat-icon>attach_file</mat-icon>
+                            Choose File
+                        </button>
+                    </label>
+
+                    <div class="file-list" *ngIf="files() && files().length > 0">
+                        <div class="file-item" *ngFor="let file of files(); let i = index">
+                            <div class="file-info">
+                                <mat-icon>insert_drive_file</mat-icon>
+                                <span>{{ file }}</span>
+                            </div>
+                            <button type="button" (click)="removeFile(i)" class="file-remove" mat-icon-button
+                                matTooltip="ลบไฟล์">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!-- End Form Columns Container -->
+        </form>
+
+        <!-- Divider -->
+        <div class="form-divider"></div>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+            <button mat-stroked-button class="btn-cancel" (click)="onCancel()" matTooltip="ยกเลิกและกลับไปหน้าก่อนหน้า">
+                <mat-icon>arrow_back</mat-icon>
+                ยกเลิก
+            </button>
+            <button mat-raised-button color="primary" class="btn-save" [disabled]="isSubmitting()" (click)="onSave()"
+                matTooltip="บันทึกการจองสินค้า">
+                <mat-icon *ngIf="!isSubmitting()">save</mat-icon>
+                <mat-icon *ngIf="isSubmitting()" class="spinner">hourglass_empty</mat-icon>
+                {{ isSubmitting() ? 'กำลังบันทึก...' : 'บันทึก' }}
+            </button>
+        </div>
+    </mat-card>
+</div>

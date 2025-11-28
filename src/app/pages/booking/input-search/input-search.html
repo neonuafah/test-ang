@@ -1,0 +1,18 @@
+<div class="actions-container">
+
+    <mat-form-field appearance="outline" class="search-field" subscriptSizing="dynamic">
+        <mat-label>ค้นหา Booking No, ลูกค้า...</mat-label>
+        <mat-icon matPrefix>search</mat-icon>
+
+        <input matInput [formControl]="searchControl" placeholder="พิมพ์เพื่อค้นหา">
+
+        <button mat-icon-button matSuffix *ngIf="searchControl.value" (click)="clearSearch()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+    <button mat-stroked-button class="filter-btn" (click)="openFilter()">
+        <mat-icon>filter_list</mat-icon>
+        ตัวกรอง
+    </button>
+
+</div>

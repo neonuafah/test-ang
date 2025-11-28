@@ -1,0 +1,42 @@
+.actions-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: white;
+    padding: 16px 0; // เว้นระยะบนล่างนิดหน่อย
+
+    .search-field {
+        width: 100%;
+        max-width: 350px; // จำกัดความกว้างไม่ให้ยืดจนน่าเกลียด
+        font-size: 14px;
+
+        // ปรับแต่ง icon ให้สีจางลงหน่อย
+        mat-icon {
+            color: #757575;
+        }
+    }
+
+    .filter-btn {
+        height: 40px; // ปรับความสูงให้เท่ากับ input field
+        width: 150px;
+        font-size: 14px;
+        border-color: #e0e0e0;
+        box-shadow: #333 0.5px 0.5px 0.2px;
+
+        mat-icon {
+            margin-right: 8px;
+        }
+    }
+}
+
+// Responsive: จอเล็กให้เรียงลงมา
+@media (max-width: 600px) {
+    .actions-container {
+        flex-direction: column;
+        align-items: stretch;
+
+        .search-field {
+            max-width: 100%;
+        }
+    }
+}

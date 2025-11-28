@@ -1,0 +1,138 @@
+// Variables (สีตามรูปภาพ)
+$bg-color: #f5f9ff; // สีพื้นหลัง Sidebar
+$hover-color: #e6f0fa;
+$active-bg: none; // สีแถบที่ถูกเลือก (Booking)
+$text-color: #333333;
+$font-stack: 'Sarabun', sans-serif;
+
+:host {
+    display: block;
+    background-color: $bg-color;
+    font-family: $font-stack;
+    overflow-y: auto; // Enable scrolling if needed
+    overflow-x: hidden; // Hide horizontal scrollbar
+    
+    // Hide scrollbar for Chrome, Safari and Opera
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    
+    // Hide scrollbar for IE, Edge and Firefox
+    -ms-overflow-style: none;  // IE and Edge
+    scrollbar-width: none;  // Firefox
+}
+
+// --- Header Section ---
+.nav-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: default;
+    transition: background-color 0.5s ease, color 0.5s ease;
+
+    // --- ส่วนที่เพิ่ม Hover ---
+    &:hover {
+        background-color: $hover-color; // ใช้สีเดียวกับเมนูย่อย
+
+        // (Optional) ถ้าอยากให้ลูกศรขยับนิดหน่อยเมื่อเอาเมาส์ชี้
+        .arrow-icon {
+            transform: translateY(1px);
+        }
+    }
+
+    .header-icon {
+        color: #3b82f6;
+        margin-right: 12px;
+    }
+
+    .header-title {
+        flex: 1;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #111;
+    }
+
+    mat-nav-list {
+        top: 56px;
+    }
+
+    .arrow-icon {
+        color: #111;
+    }
+}
+
+// --- Menu List ---
+.mat-mdc-nav-list {
+    padding-top: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+    // Hide scrollbar for Chrome, Safari and Opera
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    
+    // Hide scrollbar for IE, Edge and Firefox
+    -ms-overflow-style: none;  // IE and Edge
+    scrollbar-width: none;  // Firefox
+}
+
+.nav-item {
+    margin-left: 24px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    // State: Hover
+    &:hover {
+        background-color: $hover-color;
+    }
+
+    // State: Active (สำหรับเมนูที่เลือกอยู่)
+    &.active {
+        background-color: #3b82f6 !important; // สีน้ำเงินสำหรับ active
+        color: #ffffff !important;
+        font-weight: 600;
+        
+        // เปลี่ยนสี icon เมื่อ active
+        mat-icon {
+            color: #ffffff !important;
+        }
+        
+        span {
+            color: #ffffff !important;
+        }
+    }
+}
+
+// --- Custom Icon Colors (จำลองสีตามรูป) ---
+.c-dashboard {
+    color: #2c3e50;
+}
+
+.c-booking {
+    color: #1a237e;
+}
+
+// สีน้ำเงินเข้ม
+.c-queue {
+    color: #00897b;
+}
+
+// สีเขียวมิ้นต์
+.c-dispatch {
+    color: #1976d2;
+}
+
+// สีฟ้า
+.c-tracking {
+    color: #039be5;
+}
+
+// สีฟ้าอ่อน
+.c-return {
+    color: #5c6bc0;
+}
+
+// สีม่วงคราม
+.c-setting {
+    color: #0277bd;
+}

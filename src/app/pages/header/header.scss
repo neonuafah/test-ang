@@ -1,0 +1,103 @@
+// กำหนดตัวแปรสี
+$primary-gradient: linear-gradient(90deg, #105ec4 0%, #2e8af7 100%);
+$text-white: #ffffff;
+$glass-bg: rgba(255, 255, 255, 0.15);
+
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
+    background: $primary-gradient !important; // Override material default
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Sarabun', sans-serif;
+    color: $text-white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.left-side,
+.right-side,
+.center {
+    display: flex;
+    align-items: center;
+}
+
+.left-side {
+    gap: 8px;
+
+    .app-brand {
+        font-size: 1rem;
+        font-weight: 600;
+
+        .app-name {
+            margin-left: 8px;
+            color: $text-white;
+        }
+    }
+}
+
+mat-icon {
+    color: $text-white;
+}
+
+.center {
+    .company-box {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background-color: $glass-bg;
+        padding: 4px 12px 4px 8px;
+        border-radius: 6px;
+
+        .company-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+
+            .comp-name {
+                font-size: 0.85rem;
+                font-weight: 600;
+            }
+
+            .user-role {
+                font-size: 0.7rem;
+                opacity: 0.8;
+            }
+        }
+    }
+}
+
+.right-side {
+    gap: 8px;
+
+    .status-badge {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background-color: $glass-bg;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+}
+
+// Responsive
+@media (max-width: 768px) {
+    .company-box .comp-name {
+        max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .status-badge span:not(mat-icon) {
+        display: none;
+    }
+}

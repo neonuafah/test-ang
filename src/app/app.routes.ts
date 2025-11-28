@@ -1,3 +1,25 @@
 import { Routes } from '@angular/router';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { BookingComponent } from './pages/booking/booking.component';
+import { JobQueueComponent } from './pages/job-queue/job-queue.component';
+import { DispatchCenterComponent } from './pages/dispatch-center/dispatch-center.component';
+import { JobTrackingComponent } from './pages/job-tracking/job-tracking.component';
+import { ReturnContainerComponent } from './pages/return-container/return-container.component';
+import { SettingComponent } from './pages/setting/setting.component';
+import { AddImportBookingComponent } from './pages/add-import-booking/add-import-booking';
+import { AddExportBooking } from './pages/add-export-booking/add-export-booking';
+import { AddDomesticBooking } from './pages/add-domestic-booking/add-domestic-booking';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    { path: 'dashboard', component: DashboardComponent },
+    { path: 'booking', component: BookingComponent },
+    { path: 'job-queue', component: JobQueueComponent },
+    { path: 'dispatch-center', component: DispatchCenterComponent },
+    { path: 'job-tracking', component: JobTrackingComponent },
+    { path: 'return-container', component: ReturnContainerComponent },
+    { path: 'setting', component: SettingComponent },
+    { path: 'booking/add-import-booking', component: AddImportBookingComponent },
+    { path: 'booking/add-export-booking', component: AddExportBooking },
+    { path: 'booking/add-domestic-booking', component: AddDomesticBooking },
+];

@@ -1,0 +1,40 @@
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div class="nav-header" (click)="toggleMenu()">
+    <mat-icon class="header-icon">local_shipping</mat-icon>
+    <span class="header-title">Transport Management</span>
+    <mat-icon class="arrow-icon" [class.collapsed]="!isExpanded()">arrow_drop_down</mat-icon>
+</div>
+
+@if (isExpanded()) {
+<mat-nav-list>
+    <a mat-list-item routerLink="/dashboard" routerLinkActive="active" class="nav-item">
+        <mat-icon matListItemIcon class="c-dashboard">analytics</mat-icon>
+        <span matListItemTitle>Dashboard</span>
+    </a>
+    <a mat-list-item routerLink="/booking" routerLinkActive="active" class="nav-item">
+        <mat-icon matListItemIcon class="c-booking">add_circle</mat-icon>
+        <span matListItemTitle>Booking</span>
+    </a>
+    <a mat-list-item routerLink="/job-queue" routerLinkActive="active" class="nav-item">
+        <mat-icon matListItemIcon class="c-queue">assignment</mat-icon>
+        <span matListItemTitle>Job Queue</span>
+    </a>
+    <a mat-list-item routerLink="/dispatch-center" routerLinkActive="active" class="nav-item">
+        <mat-icon matListItemIcon class="c-dispatch">hub</mat-icon>
+        <span matListItemTitle>Dispatch center</span>
+    </a>
+    <a mat-list-item routerLink="/job-tracking" routerLinkActive="active" class="nav-item">
+        <mat-icon matListItemIcon class="c-tracking">room</mat-icon>
+        <span matListItemTitle>Job Tracking</span>
+    </a>
+    <a mat-list-item routerLink="/return-container" routerLinkActive="active" class="nav-item">
+        <mat-icon matListItemIcon class="c-return">local_shipping</mat-icon>
+        <span matListItemTitle>Return Container</span>
+    </a>
+    <a mat-list-item routerLink="/setting" routerLinkActive="active" class="nav-item">
+        <mat-icon matListItemIcon class="c-setting">settings</mat-icon>
+        <span matListItemTitle>Setting</span>
+    </a>
+</mat-nav-list>}

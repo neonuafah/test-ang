@@ -1,0 +1,6 @@
+<button class="add-button" matButton [matMenuTriggerFor]="menu">+ เพิ่มงาน</button>
+<mat-menu #menu="matMenu">
+    <button mat-menu-item class="add-import" routerLink="/booking/add-import-booking">+ เพิ่มงาน Import</button>
+    <button mat-menu-item class="add-export" routerLink="/booking/add-export-booking">+ เพิ่มงาน Export</button>
+    <button mat-menu-item class="add-domestic" routerLink="/booking/add-domestic-booking">+ เพิ่มงาน Domestic</button>
+</mat-menu>

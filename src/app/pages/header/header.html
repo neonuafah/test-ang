@@ -1,0 +1,47 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<mat-toolbar color="primary" class="main-header">
+    <div class="left-side">
+        <button mat-icon-button aria-label="menu" (click)="onMenuClick()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <button mat-button class="app-brand" (click)="onLogoClick() ">
+            <mat-icon>local_shipping</mat-icon>
+            <span class="app-name">LFMS Platform</span>
+        </button>
+    </div>
+
+    <span class="spacer"></span>
+
+    <div class="center">
+        <div class="company-box">
+            <mat-icon class="company-icon">domain</mat-icon>
+            <div class="company-text">
+                <div class="comp-name">บริษัท อีสเทิร์น แอร์ โลจิสติกส์ จำกัด</div>
+                <div class="user-role">User</div>
+            </div>
+        </div>
+    </div>
+
+    <span class="spacer"></span>
+
+    <div class="right-side">
+        <div class="tools-group">
+            <button mat-icon-button aria-label="search">
+                <mat-icon>search</mat-icon>
+            </button>
+            <button mat-icon-button aria-label="notifications">
+                <mat-icon>notifications</mat-icon>
+            </button>
+        </div>
+
+        <div class="status-badge">
+            <mat-icon>wifi</mat-icon>
+            <span>Connected</span>
+        </div>
+
+        <button mat-icon-button class="user-profile">
+            <mat-icon>account_circle</mat-icon>
+        </button>
+    </div>
+</mat-toolbar>
