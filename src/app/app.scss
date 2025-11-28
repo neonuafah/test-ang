@@ -34,6 +34,9 @@ app-navbar {
   box-sizing: border-box;
   transform-origin: top center;
   transition: transform 220ms ease, filter 220ms ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 // Prevent overflow in sidenav content
