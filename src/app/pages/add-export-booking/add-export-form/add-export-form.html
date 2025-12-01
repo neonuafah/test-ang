@@ -1,0 +1,442 @@
+<div class="page-container main-content">
+    <form [formGroup]="bookingForm">
+        <mat-card class="booking-card no-shadow">
+            <div class="header-section">
+                <div class="header-left">
+                    <h1 class="page-title">สร้าง Booking</h1>
+                    <mat-button-toggle-group [formControl]="bookingTypeControl" class="custom-toggle-group">
+                        <mat-button-toggle value="FCL" class="toggle-fcl">Export FCL</mat-button-toggle>
+                        <mat-button-toggle value="LCL" class="toggle-lcl">Export LCL</mat-button-toggle>
+                    </mat-button-toggle-group>
+                </div>
+                <div class="header-right">
+                    <label class="input-label">Booking No.</label>
+                    <mat-form-field appearance="outline" class="booking-no-field">
+                        <input matInput formControlName="bookingNo" placeholder="Booking No.">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <mat-card-content>
+                <div class="booking-form-grid">
+
+                    <!-- Column 1 -->
+                    <div class="form-column">
+                        <label class="input-label">Branch</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-select formControlName="branch">
+                                <mat-option value="HQ">HQ</mat-option>
+                            </mat-select>
+                            <button mat-icon-button matSuffix>
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </mat-form-field>
+
+                        <label class="input-label">Customer No.</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-select formControlName="customerNo">
+                                <!-- Options here -->
+                            </mat-select>
+                            <button mat-icon-button matSuffix>
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </mat-form-field>
+
+                        <label class="input-label">Customer Name</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <input matInput formControlName="customerName" placeholder="Customer Name">
+                        </mat-form-field>
+
+                        <label class="input-label">MAWB No.</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <input matInput formControlName="mawbNo" placeholder="MAWB No.">
+                        </mat-form-field>
+
+                        <label class="input-label">HAWB No.</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <input matInput formControlName="hawbNo" placeholder="MAWM/HAWB NO.">
+                        </mat-form-field>
+
+                        <label class="input-label">Port of Loading</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-select formControlName="portOfLoading">
+                                <mat-option value="BKK">Bangkok</mat-option>
+                            </mat-select>
+                            <button mat-icon-button matSuffix>
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </mat-form-field>
+
+                        <label class="input-label">Destination</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-select formControlName="destination">
+                                <mat-option value="US">USA</mat-option>
+                            </mat-select>
+                            <button mat-icon-button matSuffix>
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </mat-form-field>
+
+                        <label class="input-label">Origin</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-select formControlName="origin">
+                                <mat-option value="TH">Thailand</mat-option>
+                            </mat-select>
+                            <button mat-icon-button matSuffix>
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </mat-form-field>
+
+                        <ng-container *ngIf="isFclMode">
+                            <div class="date-time-row">
+                                <div class="field-wrapper date-field">
+                                    <label class="input-label">Empty Container Date</label>
+                                    <mat-form-field appearance="outline">
+                                        <input matInput [matDatepicker]="emptyDate"
+                                            formControlName="emptyContainerDate">
+                                        <mat-datepicker-toggle matIconSuffix [for]="emptyDate"></mat-datepicker-toggle>
+                                        <mat-datepicker #emptyDate></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="field-wrapper time-field">
+                                    <label class="input-label">Time</label>
+                                    <mat-form-field appearance="outline">
+                                        <input matInput type="time" formControlName="emptyContainerTime">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <label class="input-label">Pickup Location</label>
+                            <mat-form-field appearance="outline" class="full-width">
+                                <mat-select formControlName="pickupLocation">
+                                    <!-- Options -->
+                                </mat-select>
+                                <button mat-icon-button matSuffix>
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </mat-form-field>
+
+                            <div class="date-time-row">
+                                <div class="field-wrapper date-field">
+                                    <label class="input-label">Pickup Date</label>
+                                    <mat-form-field appearance="outline">
+                                        <input matInput [matDatepicker]="pickupDate" formControlName="pickupDate">
+                                        <mat-datepicker-toggle matIconSuffix [for]="pickupDate"></mat-datepicker-toggle>
+                                        <mat-datepicker #pickupDate></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="field-wrapper time-field">
+                                    <label class="input-label">Time</label>
+                                    <mat-form-field appearance="outline">
+                                        <input matInput type="time" formControlName="pickupTime">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="!isFclMode">
+                            <div class="date-time-row">
+                                <div class="field-wrapper date-field">
+                                    <label class="input-label">Pickup Date</label>
+                                    <mat-form-field appearance="outline">
+                                        <input matInput [matDatepicker]="pickupDateLcl" formControlName="pickupDate">
+                                        <mat-datepicker-toggle matIconSuffix
+                                            [for]="pickupDateLcl"></mat-datepicker-toggle>
+                                        <mat-datepicker #pickupDateLcl></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="field-wrapper time-field">
+                                    <label class="input-label">Time</label>
+                                    <mat-form-field appearance="outline">
+                                        <input matInput type="time" formControlName="pickupTime">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <label class="input-label">Loading Location</label>
+                            <mat-form-field appearance="outline" class="full-width">
+                                <mat-select formControlName="loadingLocation">
+                                    <!-- Options -->
+                                </mat-select>
+                                <button mat-icon-button matSuffix>
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </mat-form-field>
+
+                            <div class="date-time-row">
+                                <div class="field-wrapper date-field">
+                                    <label class="input-label">Loading Date</label>
+                                    <mat-form-field appearance="outline">
+                                        <input matInput [matDatepicker]="loadingDate" formControlName="loadingDate">
+                                        <mat-datepicker-toggle matIconSuffix
+                                            [for]="loadingDate"></mat-datepicker-toggle>
+                                        <mat-datepicker #loadingDate></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="field-wrapper time-field">
+                                    <label class="input-label">Time</label>
+                                    <mat-form-field appearance="outline">
+                                        <input matInput type="time" formControlName="loadingTime">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+
+                    <!-- Column 2 -->
+                    <div class="form-column">
+                        <label class="input-label">{{ isFclMode ? 'Carrier' : 'Coload' }}</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <input matInput formControlName="carrier"
+                                [placeholder]="isFclMode ? 'ชื่อ Carrier' : 'ชื่อ Coload'">
+                        </mat-form-field>
+
+                        <label class="input-label">Ship name</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <input matInput formControlName="shipName" placeholder="ชื่อเรือ">
+                        </mat-form-field>
+
+                        <label class="input-label">Voy /Flight No.</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <input matInput formControlName="voyFlightNo" placeholder="เที่ยวเรือ">
+                        </mat-form-field>
+
+                        <div class="date-time-row">
+                            <div class="field-wrapper date-field">
+                                <label class="input-label">ETD Date</label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput [matDatepicker]="etdDate" formControlName="etdDate">
+                                    <mat-datepicker-toggle matIconSuffix [for]="etdDate"></mat-datepicker-toggle>
+                                    <mat-datepicker #etdDate></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="field-wrapper time-field">
+                                <label class="input-label">Time</label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput type="time" formControlName="etdTime">
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <ng-container *ngIf="isFclMode">
+                            <label class="input-label">Qty</label>
+                            <mat-form-field appearance="outline" class="full-width">
+                                <input matInput formControlName="qty" placeholder="จำนวนตู้">
+                            </mat-form-field>
+                        </ng-container>
+
+                        <ng-container *ngIf="isFclMode">
+                            <label class="input-label">Container Type</label>
+                            <mat-form-field appearance="outline" class="full-width">
+                                <input matInput formControlName="containerType" placeholder="ขนาดตู้">
+                            </mat-form-field>
+                        </ng-container>
+
+                        <label class="input-label">Customer invoice</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <input matInput formControlName="customerInvoice" placeholder="Inv. ลูกค้า">
+                        </mat-form-field>
+
+                        <div class="qty-group">
+                            <div class="field-wrapper qty-input">
+                                <label class="input-label">Cargo Qty</label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput formControlName="cargoQty" placeholder="จำนวนสินค้า">
+                                </mat-form-field>
+                            </div>
+                            <div class="field-wrapper unit-select">
+                                <label class="input-label">Unit</label>
+                                <mat-form-field appearance="outline">
+                                    <mat-select formControlName="cargoUnit">
+                                        <mat-option value="PCS">PCS</mat-option>
+                                    </mat-select>
+                                    <button mat-icon-button matSuffix>
+                                        <mat-icon>add</mat-icon>
+                                    </button>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <label class="input-label">Total Weight</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <input matInput formControlName="totalWeight" placeholder="น้ำหนักสินค้า">
+                        </mat-form-field>
+
+                        <div class="dimension-group" *ngIf="!isFclMode">
+                            <div class="field-wrapper">
+                                <label class="input-label">W</label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput formControlName="dimensionW" placeholder="กว้าง">
+                                </mat-form-field>
+                            </div>
+                            <div class="field-wrapper">
+                                <label class="input-label">L</label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput formControlName="dimensionL" placeholder="ยาว">
+                                </mat-form-field>
+                            </div>
+                            <div class="field-wrapper">
+                                <label class="input-label">H</label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput formControlName="dimensionH" placeholder="สูง">
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <label class="input-label">CBM</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <input matInput formControlName="cbm" placeholder="CBM">
+                        </mat-form-field>
+
+                        <label class="input-label">Truck Type</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-select formControlName="truckType">
+                                <!-- Options -->
+                            </mat-select>
+                            <button mat-icon-button matSuffix>
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </mat-form-field>
+
+                        <label class="input-label">Cargo Type</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-select formControlName="cargoType">
+                                <!-- Options -->
+                            </mat-select>
+                            <button mat-icon-button matSuffix>
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </mat-form-field>
+
+                        <div class="date-time-row" *ngIf="isFclMode">
+                            <div class="field-wrapper date-field">
+                                <label class="input-label">Closing VGM</label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput [matDatepicker]="closingVgm" formControlName="closingVgmDate">
+                                    <mat-datepicker-toggle matIconSuffix [for]="closingVgm"></mat-datepicker-toggle>
+                                    <mat-datepicker #closingVgm></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="field-wrapper time-field">
+                                <label class="input-label">Time</label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput type="time" formControlName="closingVgmTime">
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <ng-container *ngIf="!isFclMode">
+                            <div class="date-time-row">
+                                <div class="field-wrapper date-field">
+                                    <label class="input-label">Closing Time</label>
+                                    <mat-form-field appearance="outline">
+                                        <input matInput [matDatepicker]="closingTimeLcl"
+                                            formControlName="closingTimeDate">
+                                        <mat-datepicker-toggle matIconSuffix
+                                            [for]="closingTimeLcl"></mat-datepicker-toggle>
+                                        <mat-datepicker #closingTimeLcl></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="field-wrapper time-field">
+                                    <label class="input-label">Time</label>
+                                    <mat-form-field appearance="outline">
+                                        <input matInput type="time" formControlName="closingTimeTime">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <label class="input-label">Distance km</label>
+                            <mat-form-field appearance="outline" class="full-width">
+                                <input matInput formControlName="distance" placeholder="ระยะทาง">
+                            </mat-form-field>
+                        </ng-container>
+                    </div>
+
+                    <!-- Column 3 -->
+                    <div class="form-column">
+                        <ng-container *ngIf="isFclMode">
+                            <label class="input-label">Container Return Location</label>
+                            <mat-form-field appearance="outline" class="full-width">
+                                <mat-select formControlName="containerReturnLocation">
+                                    <!-- Options -->
+                                </mat-select>
+                                <button mat-icon-button matSuffix>
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </ng-container>
+
+                        <div class="date-time-row" *ngIf="isFclMode">
+                            <div class="field-wrapper date-field">
+                                <label class="input-label">Closing Time</label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput [matDatepicker]="closingTimeFcl" formControlName="closingTimeDate">
+                                    <mat-datepicker-toggle matIconSuffix [for]="closingTimeFcl"></mat-datepicker-toggle>
+                                    <mat-datepicker #closingTimeFcl></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="field-wrapper time-field">
+                                <label class="input-label">Time</label>
+                                <mat-form-field appearance="outline">
+                                    <input matInput type="time" formControlName="closingTimeTime">
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <ng-container *ngIf="isFclMode">
+                            <label class="input-label">Distance km</label>
+                            <mat-form-field appearance="outline" class="full-width">
+                                <input matInput formControlName="distance" placeholder="ระยะทาง">
+                            </mat-form-field>
+                        </ng-container>
+
+                        <label class="input-label">Contact</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <input matInput formControlName="contact" placeholder="ชื่อผู้ติดต่อ">
+                        </mat-form-field>
+
+                        <label class="input-label">Phone number</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <input matInput formControlName="phoneNumber" placeholder="เบอร์โทร">
+                        </mat-form-field>
+
+                        <label class="input-label">Remarks</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <textarea matInput formControlName="remarks" placeholder="หมายเหตุ" rows="4"></textarea>
+                        </mat-form-field>
+
+                        <label class="input-label">Billing address</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <textarea matInput formControlName="billingAddress" placeholder="ที่อยู่ในการออกบิล"
+                                rows="4"></textarea>
+                        </mat-form-field>
+
+                        <label class="input-label">Transport Charge</label>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <input matInput formControlName="transportCharge" placeholder="ค่ารถที่เก็บลูกค้า">
+                        </mat-form-field>
+
+                        <div class="attachments-section">
+                            <label class="field-label blue-label">Attachments</label>
+                            <div class="input-wrapper flex-column">
+                                <button mat-stroked-button class="choose-file-btn">
+                                    <mat-icon>attach_file</mat-icon> Choose File
+                                </button>
+                                <div class="file-list">
+                                    <div class="file-item">Document.pdf <mat-icon class="close-icon">close</mat-icon>
+                                    </div>
+                                    <div class="file-item">Image.jpg <mat-icon class="close-icon">close</mat-icon></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </mat-card-content>
+
+            <mat-card-actions class="footer-actions">
+                <button mat-flat-button color="warn" class="cancel-btn">ยกเลิก</button>
+                <button mat-flat-button color="primary" class="save-btn">บันทึก</button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+</div>
