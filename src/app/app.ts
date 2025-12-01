@@ -6,11 +6,13 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 import { Header } from './pages/header/header';
 import { Navbar } from './pages/navbar/navbar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { SocketService } from './services/socket.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MatSidenavModule, Header, Navbar],
+  imports: [RouterOutlet, MatSidenavModule, Header, Navbar, MatSnackBarModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -28,11 +30,23 @@ export class App {
     this.isOverlay() ? 'over' : 'side'
   );
 
+  private readonly socketService = inject(SocketService);
+  private readonly snackBar = inject(MatSnackBar);
+
   constructor() {
     effect(() => {
       if (!this.isOverlay()) {
         this.isNavbarOpen.set(true);
       }
+    });
+
+    this.socketService.listen('server_notify_new_booking').subscribe((data) => {
+      console.log('New booking received:', data);
+      this.snackBar.open('New Booking Received!', 'Close', {
+        duration: 5000,
+        horizontalPosition: 'right',
+        verticalPosition: 'top'
+      });
     });
   }
 
