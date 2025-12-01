@@ -40,14 +40,9 @@
             <div class="form-columns-container">
                 <!-- ===== COLUMN 1: BOOKING DETAILS ===== -->
                 <div class="form-column">
-                    <div class="column-header">
-                        <mat-icon>info</mat-icon>
-                        <span>Booking Details</span>
-                    </div>
-
                     <!-- Branch -->
                     <div class="form-field-wrapper">
-                        <label class="field-label required">สาขา</label>
+                        <label class="field-label  required">สาขา</label>
                         <div class="field-with-button">
                             <mat-form-field class="custom-field">
                                 <mat-label>สาขา</mat-label>
@@ -63,7 +58,7 @@
 
                     <!-- Customer No -->
                     <div class="form-field-wrapper">
-                        <label class="field-label required">รหัสลูกค้า</label>
+                        <label class="field-label  ">รหัสลูกค้า</label>
                         <div class="field-with-button">
                             <mat-form-field class="custom-field">
                                 <mat-label>รหัสลูกค้า</mat-label>
@@ -104,7 +99,7 @@
 
                     <!-- Port of Loading -->
                     <div class="form-field-wrapper">
-                        <label class="field-label required">เรือออกจากประเทศ</label>
+                        <label class="field-label  ">เรือออกจากประเทศ</label>
                         <div class="field-with-button">
                             <mat-form-field class="custom-field">
                                 <mat-label>เรือออกจากประเทศ</mat-label>
@@ -122,7 +117,7 @@
 
                     <!-- Destination -->
                     <div class="form-field-wrapper">
-                        <label class="field-label required">เรือไปประเทศ</label>
+                        <label class="field-label  ">เรือไปประเทศ</label>
                         <div class="field-with-button">
                             <mat-form-field class="custom-field">
                                 <mat-label>เรือไปประเทศ</mat-label>
@@ -139,7 +134,7 @@
 
                     <!-- Origin -->
                     <div class="form-field-wrapper">
-                        <label class="field-label required">Origin</label>
+                        <label class="field-label  ">Origin</label>
                         <div class="field-with-button">
                             <mat-form-field class="custom-field">
                                 <mat-label>Origin</mat-label>
@@ -153,7 +148,13 @@
                             </button>
                         </div>
                     </div>
-
+                    <div class="form-field-wrapper">
+                        <label class="field-label">carrier</label>
+                        <mat-form-field class="custom-field">
+                            <mat-label>carrier</mat-label>
+                            <input matInput formControlName="carrier" placeholder="carrier" />
+                        </mat-form-field>
+                    </div>
                     <!-- Pickup Date & Time -->
                     <div class="form-field-wrapper">
                         <label class="field-label">Pickup Date</label>
@@ -208,24 +209,8 @@
 
                 <!-- ===== COLUMN 2: SHIPMENT DETAILS ===== -->
                 <div class="form-column">
-                    <div class="column-header">
-                        <mat-icon>local_shipping</mat-icon>
-                        <span>Shipment Details</span>
-                    </div>
-
-                    <!-- Coload (LCL) / Carrier (FCL) -->
                     <div class="form-field-wrapper">
-                        <label class="field-label" [class.required]="isLCL">ชื่อ Coload</label>
-                        <mat-form-field class="custom-field">
-                            <mat-label>ชื่อ Coload</mat-label>
-                            <input matInput [formControlName]="isFCL ? 'carrier' : 'coloadName'"
-                                placeholder="ชื่อ Coload" />
-                        </mat-form-field>
-                    </div>
-
-                    <!-- Ship Name -->
-                    <div class="form-field-wrapper">
-                        <label class="field-label" [class.required]="isFCL">ชื่อเรือ</label>
+                        <label class="field-label">ชื่อเรือ</label>
                         <mat-form-field class="custom-field">
                             <mat-label>ชื่อเรือ</mat-label>
                             <input matInput formControlName="shipName" placeholder="ชื่อเรือ" />
@@ -271,14 +256,14 @@
                     <ng-container *ngIf="isFCL">
                         <div class="form-row">
                             <div class="form-field-wrapper flex-1">
-                                <label class="field-label required">จำนวนตู้</label>
+                                <label class="field-label  ">จำนวนตู้</label>
                                 <mat-form-field class="custom-field">
                                     <mat-label>QTY</mat-label>
                                     <input matInput type="number" formControlName="qtyContainers" />
                                 </mat-form-field>
                             </div>
                             <div class="form-field-wrapper flex-1">
-                                <label class="field-label required">ขนาดตู้</label>
+                                <label class="field-label  ">ขนาดตู้</label>
                                 <mat-form-field class="custom-field">
                                     <mat-label>Container Type</mat-label>
                                     <input matInput formControlName="containerType" placeholder="Container Type" />
@@ -289,7 +274,7 @@
 
                     <!-- Cargo Qty -->
                     <div class="form-field-wrapper">
-                        <label class="field-label required">จำนวนสินค้า</label>
+                        <label class="field-label  ">จำนวนสินค้า</label>
                         <div class="form-row">
                             <mat-form-field class="custom-field flex-1">
                                 <mat-label>จำนวน</mat-label>
@@ -311,7 +296,7 @@
 
                     <!-- Total Weight -->
                     <div class="form-field-wrapper">
-                        <label class="field-label required">น้ำหนักสินค้า</label>
+                        <label class="field-label  ">น้ำหนักสินค้า</label>
                         <mat-form-field class="custom-field">
                             <mat-label>น้ำหนักสินค้า</mat-label>
                             <input matInput type="number" formControlName="totalWeight" placeholder="น้ำหนักสินค้า" />
@@ -343,7 +328,7 @@
 
                     <!-- CBM -->
                     <div class="form-field-wrapper">
-                        <label class="field-label required">CBM</label>
+                        <label class="field-label  ">CBM</label>
                         <mat-form-field class="custom-field">
                             <mat-label>CBM</mat-label>
                             <input matInput type="number" formControlName="cbm" placeholder="CBM" />
@@ -352,7 +337,7 @@
 
                     <!-- Truck Type -->
                     <div class="form-field-wrapper">
-                        <label class="field-label required">ประเภทรถ</label>
+                        <label class="field-label  ">ประเภทรถ</label>
                         <div class="field-with-button">
                             <mat-form-field class="custom-field">
                                 <mat-label>ประเภทรถ</mat-label>
@@ -370,7 +355,7 @@
 
                     <!-- Cargo Type -->
                     <div class="form-field-wrapper">
-                        <label class="field-label required">ประเภทสินค้า</label>
+                        <label class="field-label  ">ประเภทสินค้า</label>
                         <div class="field-with-button">
                             <mat-form-field class="custom-field">
                                 <mat-label>ประเภทสินค้า</mat-label>
@@ -433,11 +418,6 @@
 
                 <!-- ===== COLUMN 3: CONTACT & BILLING ===== -->
                 <div class="form-column">
-                    <div class="column-header">
-                        <mat-icon>receipt</mat-icon>
-                        <span>Contact & Billing</span>
-                    </div>
-
                     <!-- FCL: Container Return Location -->
                     <ng-container *ngIf="isFCL">
                         <div class="form-field-wrapper">

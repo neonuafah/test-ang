@@ -7,14 +7,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatButtonToggleModule, MatButtonToggleChange } from '@angular/material/button-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, provideNativeDateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTabsModule } from '@angular/material/tabs';
-import { MatButtonToggleChange } from '@angular/material/button-toggle';
+import { BookingService } from '../../../services/booking.service';
 
 interface BookingFormData {
   bookingType: 'FCL' | 'LCL';
@@ -104,9 +104,12 @@ export class BookingFormComponent implements OnInit {
   formBuilder = new FormBuilder();
 
   // ========== CONSTRUCTOR ==========
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private bookingService: BookingService
+  ) {
     this.bookingForm = this.initializeForm();
-    
+
     // Update validators based on booking type (using effect for signals)
     // effect() must be called in injection context (constructor)
     effect(() => {
@@ -120,6 +123,7 @@ export class BookingFormComponent implements OnInit {
   private initializeForm(): FormGroup {
     return this.formBuilder.group({
       // Booking Info
+      status: ['new'],
       bookingNo: [''],
       branch: ['', Validators.required],
       customerNo: ['', Validators.required],
@@ -267,12 +271,19 @@ export class BookingFormComponent implements OnInit {
       const formData = this.collectFormData();
       console.log('Booking Data:', formData);
 
-      // Simulate API call
-      setTimeout(() => {
-        this.isSubmitting.set(false);
-        alert('Booking saved successfully!');
-        // this.router.navigate(['/booking']);
-      }, 1500);
+      this.bookingService.createBooking(formData).subscribe({
+        next: (response) => {
+          console.log('Booking saved:', response);
+          this.isSubmitting.set(false);
+          alert('Booking saved successfully!');
+          // this.router.navigate(['/booking']);
+        },
+        error: (error) => {
+          console.error('Error saving booking:', error);
+          this.isSubmitting.set(false);
+          alert('Error saving booking. Please try again.');
+        }
+      });
     } else {
       this.markFormGroupTouched(this.bookingForm);
     }
