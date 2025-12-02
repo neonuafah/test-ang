@@ -12,10 +12,8 @@ export class BookingService {
     constructor() {
         this.socket = io(this.url);
         this.socket.on('connect', () => {
-            console.log('Socket connected:', this.socket.id);
         });
         this.socket.on('disconnect', () => {
-            console.log('Socket disconnected');
         });
         this.socket.on('connect_error', (error) => {
             console.error('Socket connection error:', error);
@@ -24,8 +22,6 @@ export class BookingService {
 
     createBooking(bookingData: any): Observable<any> {
         return new Observable(observer => {
-            console.log('Socket connected status:', this.socket.connected);
-            console.log('Emitting createBooking event (Fire and Forget)', bookingData);
 
             this.socket.emit('createBooking', bookingData);
 

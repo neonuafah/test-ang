@@ -40,15 +40,6 @@ export class App {
         this.isNavbarOpen.set(true);
       }
     });
-
-    this.socketService.listen('server_notify_new_booking').subscribe((data) => {
-      console.log('New booking received:', data);
-      this.snackBar.open('New Booking Received!', 'Close', {
-        duration: 5000,
-        horizontalPosition: 'right',
-        verticalPosition: 'top'
-      });
-    });
   }
 
   toggleNavbar() {
