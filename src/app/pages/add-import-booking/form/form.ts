@@ -103,11 +103,11 @@ export class BookingFormComponent implements OnInit {
     transportCharge: new FormControl(''),
   });
 
-  bookingTypeControl = new FormControl('importFCL'); // ค่าเริ่มต้นคือ FCL
+  bookingTypeControl = new FormControl('FCL'); // ค่าเริ่มต้นคือ FCL
 
   // Getter เพื่อเช็คสถานะปัจจุบัน
   get isFclMode(): boolean {
-    return this.bookingTypeControl.value === 'importFCL';
+    return this.bookingTypeControl.value === 'FCL';
   }
 
   constructor(
@@ -124,6 +124,7 @@ export class BookingFormComponent implements OnInit {
     // Map form data to backend format (with all fields)
     const rawData = {
       bookingType: this.bookingTypeControl.value,
+      job: 'IM',
       status: 'new',
       bookingNo: this.bookingForm.value.bookingNo,
       branch: this.bookingForm.value.branch,
