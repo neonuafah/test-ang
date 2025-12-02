@@ -2,11 +2,15 @@
     overflow: auto;
     background: white;
     border-radius: 4px;
+    // เพิ่มส่วนนี้เพื่อให้ปรับตามหน้าจอ
+    max-width: 95%;
+    width: 95%;
 
     ::ng-deep table {
         width: 100%;
         min-width: 2000px;
-        // ลบ text-align: center ที่ table ออก (ไม่จำเป็น)
+        // ปรับให้ table ไม่มี fixed width
+        table-layout: auto;
 
         th.mat-mdc-header-cell {
             background-color: #f1f1f1;
@@ -14,13 +18,12 @@
             color: #333;
             font-size: 0.85rem;
             text-transform: uppercase;
-
-            // --- ส่วนที่เพิ่ม/แก้ไข ---
             text-align: center !important;
-            justify-content: center !important; // จำเป็นสำหรับ Flexbox layout
-            padding: 8px 16px; // ปรับ Padding ให้สมดุล
+            justify-content: center !important;
+            padding: 8px 16px;
+            // เพิ่ม white-space เพื่อจัดการกับข้อความยาว
+            white-space: nowrap;
 
-            // กรณีถ้ามีการใช้ Sort Header ในอนาคต ต้องจัด div ข้างในด้วย
             ::ng-deep .mat-sort-header-container {
                 justify-content: center !important;
             }
@@ -29,10 +32,9 @@
         td.mat-mdc-cell {
             font-size: 14px;
             padding: 8px 16px;
-
-            // --- ส่วนที่เพิ่ม/แก้ไข ---
             text-align: center !important;
-            justify-content: center !important; // จำเป็นสำหรับ Flexbox layout
+            justify-content: center !important;
+            white-space: nowrap;
         }
 
         tr.mat-row:hover {
@@ -59,5 +61,28 @@
 
     &.status-new {
         background-color: #278fff;
+    }
+}
+
+// เพิ่ม Media Query สำหรับหน้าจอเล็ก
+@media (max-width: 1200px) {
+    .table-container {
+        ::ng-deep table {
+            min-width: 1200px; // ลดขนาด min-width สำหรับหน้าจอเล็ก
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .table-container {
+        ::ng-deep table {
+            min-width: 800px;
+
+            th.mat-mdc-header-cell,
+            td.mat-mdc-cell {
+                padding: 6px 8px; // ลด padding สำหรับหน้าจอเล็ก
+                font-size: 0.8rem;
+            }
+        }
     }
 }

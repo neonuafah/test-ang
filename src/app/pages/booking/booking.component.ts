@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { BookingTable } from './booking-table/booking-table';
 import { InputSearch } from './input-search/input-search';
 import { AddBooking } from './add-booking/add-booking';
+
 @Component({
   selector: 'app-booking',
   standalone: true,
