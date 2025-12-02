@@ -1,15 +1,12 @@
 <app-header (menuClick)="toggleNavbar()" (closeMenu)="closeNavbar()"></app-header>
 
-<mat-sidenav-container class="sidenav-container"
-                      [class.nav-open]="isNavbarOpen()"
-                      [class.overlay-mode]="sidenavMode() === 'over'">
-  <mat-sidenav [mode]="sidenavMode()"
-               [opened]="isNavbarOpen()"
-               [disableClose]="sidenavMode() === 'side'">
+<mat-sidenav-container class="sidenav-container" [class.nav-open]="isNavbarOpen()"
+  [class.overlay-mode]="sidenavMode() === 'over'">
+  <mat-sidenav [mode]="sidenavMode()" [opened]="isNavbarOpen()" [disableClose]="sidenavMode() === 'side'">
     <app-navbar></app-navbar>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div class="content">
+    <div class="content" cdkScrollable>
       <router-outlet />
     </div>
   </mat-sidenav-content>

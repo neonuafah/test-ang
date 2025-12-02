@@ -8,11 +8,12 @@ import { Header } from './pages/header/header';
 import { Navbar } from './pages/navbar/navbar';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { SocketService } from './services/socket.service';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MatSidenavModule, Header, Navbar, MatSnackBarModule],
+  imports: [RouterOutlet, MatSidenavModule, Header, Navbar, MatSnackBarModule, ScrollingModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
