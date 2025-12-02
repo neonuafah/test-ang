@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,6 +11,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete'
+
 
 @Component({
   selector: 'app-add-export-form',
@@ -27,12 +29,26 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     ReactiveFormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatAutocompleteModule
   ],
   templateUrl: './add-export-form.html',
   styleUrl: './add-export-form.scss',
 })
-export class AddExportForm {
+export class AddExportForm implements OnInit {
+  myControl = new FormControl('');
+  options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions: string[] = [];
+
+  ngOnInit() {
+    this.filteredOptions = this.options.slice();
+  }
+
+  filter() {
+    const filterValue = this.myControl.value?.toLowerCase() || '';
+    this.filteredOptions = this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
   bookingForm = new FormGroup({
     bookingNo: new FormControl(''),
     branch: new FormControl(''),

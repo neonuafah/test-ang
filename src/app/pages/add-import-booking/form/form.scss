@@ -1,803 +1,238 @@
-// ============================================================================
-// VARIABLES & COLOR PALETTE
-// ============================================================================
-
-$primary: #0066cc;
-$primary-dark: #0052a3;
-$primary-light: #e6f0ff;
-$success: #16a34a;
-$danger: #dc2626;
-$warning: #f59e0b;
-$gray-50: #f9fafb;
-$gray-100: #f3f4f6;
-$gray-200: #e5e7eb;
-$gray-300: #d1d5db;
-$gray-400: #9ca3af;
-$gray-500: #6b7280;
-$gray-600: #4b5563;
-$gray-700: #374151;
-
-$radius: 8px;
-$transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-$shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
-
-// ============================================================================
-// GLOBAL STYLES
-// ============================================================================
-
-.booking-form-container {
-    background: linear-gradient(135deg, $gray-50 0%, #f0f9ff 100%);
-    font-family: 'Segoe UI', 'Roboto', sans-serif;
-    width: 100%;
-    max-width: 1500px;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    box-sizing: border-box;
+// --- Reset & Base Styles ---
+.main-content {
+    padding: 20px;
+    background-color: #ffffff;
+    min-height: 100vh;
 }
 
-// ============================================================================
-// HEADER SECTION
-// ============================================================================
+.no-shadow {
+    box-shadow: none !important;
+    background-color: transparent;
+}
 
-.booking-header {
-    margin-bottom: 1.5rem;
-    background: white;
-    padding: 1.5rem 2rem;
-    border-radius: $radius;
-    box-shadow: $shadow-md;
+// --- Header Section ---
+.header-section {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
-    box-sizing: border-box;
-    width: 100%;
-    overflow: hidden; // Prevents content from overflowing
-
-    @media (max-width: 768px) {
-        padding: 1rem;
-        flex-direction: column;
-        align-items: flex-start;
-    }
+    align-items: center; // Align center vertically
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
 
     .header-left {
-        flex: 1;
         display: flex;
-        flex-direction: column;
-        gap: 1rem;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
 
-        .header-title {
-            h1 {
-                margin: 0;
-                font-size: 1.75rem;
-                font-weight: 700;
-                color: $gray-700;
-                line-height: 1.2;
-            }
-        }
-
-        .booking-type-selector {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        .page-title {
+            font-size: 24px;
+            font-weight: 500;
+            color: #000000;
+            margin: 0;
         }
     }
 
     .header-right {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-
-        .import-btn {
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 0.5rem 1.5rem;
-            min-width: 120px;
-
-            &.import-fcl {
-                background: linear-gradient(135deg, $success 0%, #22c55e 100%);
-                color: white;
-            }
-
-            &.import-lcl {
-                background: linear-gradient(135deg, #84cc16 0%, #a3e635 100%);
-                color: white;
-            }
+        .booking-no-field {
+            width: 200px;
+            margin-bottom: -1.25em; // Fix bottom margin of mat-form-field
         }
     }
 }
 
-// ============================================================================
-// BOOKING NO SECTION
-// ============================================================================
+// --- Custom Toggle Button ---
+.custom-toggle-group {
+    border: none;
+    background: transparent;
+    gap: 10px;
 
-.booking-no-section {
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid $gray-200;
+    mat-button-toggle {
+        border-radius: 20px;
+        border: none;
+        padding: 0 16px; // Adjusted padding
+        font-weight: 500;
+        color: white;
+        background-color: #a0a0a0;
 
-    @media (max-width: 768px) {
-        margin-bottom: 1.5rem;
-        padding-bottom: 1rem;
-    }
-
-    .booking-no-field {
-        width: 100%;
-        max-width: 300px;
-
-        @media (max-width: 768px) {
-            max-width: 100%;
+        &.mat-button-toggle-checked {
+            background-color: #1eb300; // Gold/Olive color
         }
     }
 }
 
-// ============================================================================
-// TABS SECTION
-// ============================================================================
-
-.booking-tabs {
-    ::ng-deep {
-        .mat-mdc-tab-group {
-            margin-bottom: 2rem;
-        }
-
-        .mat-mdc-tab-list {
-            border-bottom: 2px solid $gray-200;
-            background: white;
-            margin: 0 -2rem;
-            padding: 0 2rem;
-            box-shadow: $shadow-sm;
-
-            @media (max-width: 640px) {
-                margin: 0 -1rem;
-                padding: 0 1rem;
-            }
-        }
-
-        .mat-mdc-tab {
-            min-width: 200px;
-
-            @media (max-width: 768px) {
-                min-width: 150px;
-            }
-        }
-
-        .mat-mdc-tab-header-pagination {
-            display: flex;
-            align-items: center;
-        }
-
-        .tab-icon {
-            margin-right: 0.5rem;
-            color: $primary;
-        }
-
-        .tab-label {
-            font-weight: 600;
-            color: $gray-600;
-        }
-
-        .mat-mdc-tab.mat-mdc-tab-active {
-            .tab-icon {
-                color: $primary;
-            }
-
-            .tab-label {
-                color: $primary;
-            }
-        }
-
-        .mdc-tab__text-label::after {
-            background-color: $primary !important;
-        }
-
-        .mat-mdc-tab-body-content {
-            padding: 0;
-        }
-    }
-}
-
-.tab-content-card {
-    background: white;
-    border-radius: 0;
-    box-shadow: none;
-    padding: 2rem;
-    margin-top: 0;
-
-    @media (max-width: 1024px) {
-        padding: 1.5rem;
-    }
-
-    @media (max-width: 640px) {
-        padding: 1rem;
-    }
-}
-
-.tab-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-// ============================================================================
-// CARD & FORM LAYOUT
-// ============================================================================
-
-.booking-card {
-    background: white;
-    border-radius: $radius;
-    box-shadow: $shadow-xl;
-    padding: 2rem;
-    transition: $transition;
-    width: 100%;
-    box-sizing: border-box;
-    overflow: hidden; // Prevents content from overflowing
-    margin: 0 auto; // Center the card
-
-    @media (min-width: 1920px) {
-        padding: 2.5rem;
-    }
-
-    @media (min-width: 2560px) {
-        padding: 3rem;
-    }
-
-    @media (max-width: 1024px) {
-        padding: 1.5rem;
-    }
-
-    @media (max-width: 640px) {
-        padding: 1rem;
-        border-radius: 6px;
-    }
-}
-
-.booking-form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    overflow: hidden;
-
-    .booking-no-section {
-        width: 100%;
-        max-width: 100%;
-        margin-bottom: 2rem;
-        padding-bottom: 1.5rem;
-        border-bottom: 1px solid $gray-200;
-        box-sizing: border-box;
-
-        @media (max-width: 768px) {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-        }
-    }
-
-    .form-columns-container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
-
-        @media (max-width: 1200px) {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        @media (max-width: 768px) {
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-    }
+// --- Main Form Grid (3 Columns) ---
+.booking-form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    align-items: start;
 }
 
 .form-column {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    min-width: 0; // Prevents flex items from overflowing
-    overflow: hidden; // Prevents content from overflowing
-
-    .column-header {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-size: 0.875rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        color: $gray-600;
-        letter-spacing: 1px;
-        padding-bottom: 1rem;
-        margin-bottom: 1rem;
-        border-bottom: 2px solid $primary;
-
-        mat-icon {
-            font-size: 1.25rem;
-            width: 1.25rem;
-            height: 1.25rem;
-            color: $primary;
-        }
-
-        span {
-            flex: 1;
-        }
-    }
+    gap: 8px; // Space between form fields
 }
 
-// ============================================================================
-// FORM FIELDS
-// ============================================================================
-
-.form-field-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    min-width: 0; // Prevents flex items from overflowing
+// --- Form Fields Utilities ---
+.full-width {
     width: 100%;
-    box-sizing: border-box;
 }
 
-.flex-1 {
-    flex: 1;
-    min-width: 200px;
-    max-width: 100%;
-    box-sizing: border-box;
-    overflow: hidden;
-}
-
-.form-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    width: 100%;
-    box-sizing: border-box;
-    min-width: 0; // Prevents flex items from overflowing
-    align-items: flex-end;
-}
-
-.time-field {
-    flex: 0 0 90px;
-    max-width: 100%;
-    box-sizing: border-box;
-
-    @media (max-width: 768px) {
-        flex: 0 0 80px;
-    }
-}
-
-.date-field {
-    flex: 1;
-    min-width: 0;
-    max-width: 100%;
-    box-sizing: border-box;
-    overflow: hidden;
-}
-
-.field-label {
-    font-size: 0.8125rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: $gray-600;
-    letter-spacing: 0.5px;
-    transition: color 0.2s ease;
-    margin-bottom: 0.25rem;
+.input-label {
     display: block;
-
-    &.required::after {
-        content: ' *';
-        color: $danger;
-    }
-
-    &.highlight {
-        color: $warning;
-    }
-
-    &.primary {
-        color: $primary;
-    }
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #333;
+    font-size: 14px;
 }
 
-.field-with-button {
+.date-time-row {
     display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
+    gap: 10px;
+    flex-wrap: wrap;
 
-    .custom-field {
-        flex: 1;
-        min-width: 0;
-    }
+    .field-wrapper {
+        display: flex;
+        flex-direction: column;
 
-    .add-btn {
-        margin-top: 0.5rem;
-        color: $success;
-        flex-shrink: 0;
-
-        &:hover {
-            background: rgba(22, 163, 74, 0.1);
+        mat-form-field {
+            width: 100%;
         }
 
-        mat-icon {
-            font-size: 1.25rem;
-            width: 1.25rem;
-            height: 1.25rem;
+        &.date-field {
+            flex: 1 1 140px; // Equal width with min-width basis
+        }
+
+        &.time-field {
+            flex: 1 1 140px; // Equal width with min-width basis
         }
     }
 }
 
-::ng-deep {
-    .custom-field.mat-mdc-form-field {
-        width: 100%;
-        box-sizing: border-box;
-
-        .mat-mdc-text-field-wrapper {
-            padding-bottom: 0.5rem;
-            box-sizing: border-box;
-        }
-
-        .mat-mdc-form-field-focus-overlay {
-            background-color: rgba(0, 102, 204, 0.04);
-        }
-
-        .mat-mdc-floating-label {
-            font-size: 0.875rem;
-        }
-
-        .mat-mdc-input-element,
-        .mat-mdc-select-trigger {
-            font-size: 0.9375rem;
-            color: $gray-700;
-            box-sizing: border-box;
-            max-width: 100%;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            word-wrap: break-word;
-        }
-
-        .mat-mdc-form-field-outline {
-            color: $gray-300 !important;
-            top: 0;
-        }
-
-        &.mat-focused {
-            .mat-mdc-form-field-outline {
-                color: $primary !important;
-            }
-        }
-
-        &.mat-form-field-invalid {
-            .mat-mdc-form-field-outline {
-                color: $danger !important;
-            }
-        }
-
-        &.disabled-field {
-            .mat-mdc-input-element {
-                background: $gray-100;
-                cursor: not-allowed;
-            }
-        }
-
-        &.billing-field {
-            .mat-mdc-text-field-wrapper textarea {
-                resize: vertical;
-                max-width: 100%;
-                overflow-wrap: break-word;
-                word-wrap: break-word;
-            }
-        }
-
-        textarea.mat-mdc-input-element {
-            max-width: 100%;
-            overflow-wrap: break-word;
-            word-wrap: break-word;
-            resize: vertical;
-        }
-    }
-
-    .mat-mdc-form-field-hint {
-        font-size: 0.75rem;
-        color: $gray-500;
-    }
-}
-
-// ============================================================================
-// SPECIAL INPUTS
-// ============================================================================
-
-.dimension-inputs {
+.qty-group {
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    width: 100%;
-    box-sizing: border-box;
-    min-width: 0;
+    gap: 10px;
+    flex-wrap: wrap;
 
-    .dim-field {
-        flex: 1;
-        min-width: 0;
-        max-width: 100%;
+    .field-wrapper {
+        display: flex;
+        flex-direction: column;
 
-        ::ng-deep .mat-mdc-form-field {
+        mat-form-field {
+            width: 100%;
+        }
+
+        &.qty-input {
+            flex: 2 1 120px; // Allow shrinking but wrap if < 120px
+        }
+
+        &.unit-select {
+            flex: 1 1 100px;
+            min-width: 100px;
+        }
+    }
+}
+
+.dimension-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    .field-wrapper {
+        flex: 1 1 80px; // Allow shrinking but wrap if < 80px
+        display: flex;
+        flex-direction: column;
+
+        mat-form-field {
             width: 100%;
         }
     }
-
-    .dim-separator {
-        color: $gray-400;
-        font-weight: 600;
-        flex-shrink: 0;
-        margin-top: 0.5rem;
-    }
 }
 
-// ============================================================================
-// ATTACHMENT SECTION
-// ============================================================================
+// --- Attachments ---
+.attachments-section {
+    margin-top: 10px;
 
-.attachment-box {
-    background: $gray-50;
-    border: 1px solid $gray-200;
-    border-radius: $radius;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-
-    .attachment-header {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-weight: 700;
-        color: $primary;
-        text-transform: uppercase;
-        font-size: 0.875rem;
-
-        mat-icon {
-            font-size: 1.25rem;
-            width: 1.25rem;
-            height: 1.25rem;
-        }
+    .field-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #1976d2;
     }
 
-    .upload-area {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 1rem;
-        cursor: pointer;
-        transition: $transition;
-
-        .choose-file-btn {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: $primary;
-            border-color: $primary;
-
-            &:hover {
-                background: $primary-light;
-            }
-
-            mat-icon {
-                font-size: 1.25rem;
-                width: 1.25rem;
-                height: 1.25rem;
-            }
-        }
+    .choose-file-btn {
+        border-radius: 20px;
+        margin-bottom: 10px;
     }
 
     .file-list {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        margin-top: 0.5rem;
-
         .file-item {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 0.75rem;
-            background: white;
-            border: 1px solid $gray-200;
-            border-radius: 6px;
-            transition: $transition;
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 4px;
 
-            &:hover {
-                background: #fef8e6;
-                border-color: $warning;
-
-                .file-remove {
-                    opacity: 1;
-                }
-            }
-
-            .file-info {
-                display: flex;
-                align-items: center;
-                gap: 0.75rem;
-                color: $gray-600;
-                font-size: 0.875rem;
-                flex: 1;
-                min-width: 0;
-
-                mat-icon {
-                    font-size: 1.25rem;
-                    width: 1.25rem;
-                    height: 1.25rem;
-                    flex-shrink: 0;
-                    color: $warning;
-                }
-
-                span {
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                }
-            }
-
-            .file-remove {
-                opacity: 0;
-                transition: opacity 0.2s ease;
-                color: $danger;
-
-                mat-icon {
-                    font-size: 1.125rem;
-                    width: 1.125rem;
-                    height: 1.125rem;
-                }
-
-                &:hover {
-                    background: rgba(220, 38, 38, 0.1);
-                }
+            .close-icon {
+                font-size: 16px;
+                height: 16px;
+                width: 16px;
+                line-height: 16px;
+                color: #999;
+                margin-left: 8px;
+                cursor: pointer;
             }
         }
     }
 }
 
-// ============================================================================
-// DIVIDER
-// ============================================================================
-
-.form-divider {
-    border: none;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, $gray-300 50%, transparent 100%);
-    margin: 2rem 0;
+.cancel-btn {
+    color: white;
+    background-color: red;
 }
 
-// ============================================================================
-// FORM ACTIONS
-// ============================================================================
+.save-btn {
+    color: white;
+    background-color: #0cb700;
+}
 
-.form-actions {
+// --- Footer ---
+.footer-actions {
     display: flex;
     justify-content: flex-end;
-    gap: 1rem;
-    padding-top: 1rem;
-
-    @media (max-width: 640px) {
-        flex-direction: column-reverse;
-        gap: 0.75rem;
-    }
+    gap: 16px;
+    padding: 20px 0;
+    margin-top: 20px;
 
     button {
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-        min-width: 140px;
-        transition: $transition;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-
-        mat-icon {
-            font-size: 1.125rem;
-            width: 1.125rem;
-            height: 1.125rem;
-        }
-
-        &.btn-cancel {
-            color: $danger;
-            border-color: $danger;
-
-            &:hover {
-                background: rgba(220, 38, 38, 0.05);
-            }
-        }
-
-        &.btn-save {
-            background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
-            color: white;
-            padding: 0.75rem 2rem;
-            box-shadow: $shadow-md;
-
-            &:hover {
-                box-shadow: $shadow-lg;
-                transform: translateY(-2px);
-            }
-
-            &:active {
-                transform: translateY(0);
-            }
-
-            @media (max-width: 640px) {
-                width: 100%;
-                min-width: unset;
-            }
-        }
+        padding: 8px 40px;
+        border-radius: 20px;
     }
 }
 
-// ============================================================================
-// RESPONSIVE & MOBILE OPTIMIZATION
-// ============================================================================
+// --- Responsive ---
+@media (max-width: 1200px) {
+    .booking-form-grid {
+        gap: 20px;
+    }
+}
 
-@media (max-width: 640px) {
-    .booking-form {
-        gap: 1rem;
+@media (max-width: 900px) {
+    .booking-form-grid {
+        grid-template-columns: 1fr; // Stack columns
     }
 
-    .form-column {
-        gap: 1rem;
-    }
+    .header-section {
+        flex-direction: column;
+        align-items: flex-start;
 
-    .column-header {
-        font-size: 0.75rem;
-        padding-bottom: 0.75rem;
-    }
+        .header-right {
+            width: 100%;
 
-    .field-label {
-        font-size: 0.75rem;
-    }
-
-    ::ng-deep .custom-field.mat-mdc-form-field {
-        .mat-mdc-floating-label {
-            font-size: 0.8125rem;
-        }
-
-        .mat-mdc-input-element,
-        .mat-mdc-select-trigger {
-            font-size: 0.875rem;
-        }
-    }
-
-    .dimension-inputs {
-        gap: 0.5rem;
-
-        .dim-input {
-            padding: 0.5rem;
-            font-size: 0.875rem;
-        }
-    }
-
-    .attachment-box {
-        padding: 1rem;
-
-        .upload-area {
-            padding: 1.5rem 1rem;
-
-            .upload-icon {
-                font-size: 2rem;
-                width: 2rem;
-                height: 2rem;
-                margin-bottom: 0.25rem;
-            }
-
-            p {
-                font-size: 0.875rem;
-            }
-
-            small {
-                font-size: 0.75rem;
+            .booking-no-field {
+                width: 100%;
             }
         }
     }

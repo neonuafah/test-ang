@@ -13,7 +13,7 @@ import { AddBooking } from './add-booking/add-booking';
   standalone: true,
   imports: [CommonModule, MatTableModule, MatButtonModule, MatIconModule, MatInputModule, MatFormFieldModule, BookingTable, InputSearch, AddBooking],
   templateUrl: './booking.html',
-  styleUrl: './booking.scss'
+  styleUrls: ['./booking.scss']
 })
 export class BookingComponent {
   displayedColumns: string[] = ['status', 'branch', 'bookingNumber', 'job', 'type', 'customer', 'cusInventory', 'cusBL', 'origin', 'destination', 'returnDate', 'returnLocation', 'containerNumber', 'coload', 'boatName', 'eatDate', 'boatContainerNumber', 'createdAt'];

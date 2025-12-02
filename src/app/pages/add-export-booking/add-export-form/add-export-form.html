@@ -34,12 +34,14 @@
 
                         <label class="input-label">Customer No.</label>
                         <mat-form-field appearance="outline" class="full-width">
-                            <mat-select formControlName="customerNo">
-                                <!-- Options here -->
-                            </mat-select>
-                            <button mat-icon-button matSuffix>
-                                <mat-icon>add</mat-icon>
-                            </button>
+                            <input #input type="text" placeholder="Pick one" matInput [formControl]="myControl"
+                                [matAutocomplete]="auto" (input)="filter()" (focus)="filter()">
+
+                            <mat-autocomplete requireSelection #auto="matAutocomplete">
+                                @for (option of filteredOptions; track option) {
+                                <mat-option [value]="option">{{option}}</mat-option>
+                                }
+                            </mat-autocomplete>
                         </mat-form-field>
 
                         <label class="input-label">Customer Name</label>
@@ -434,7 +436,7 @@
             </mat-card-content>
 
             <mat-card-actions class="footer-actions">
-                <button mat-flat-button color="warn" class="cancel-btn">ยกเลิก</button>
+                <button mat-flat-button routerLink="/booking" color="warn" class="cancel-btn">ยกเลิก</button>
                 <button mat-flat-button color="primary" class="save-btn">บันทึก</button>
             </mat-card-actions>
         </mat-card>
