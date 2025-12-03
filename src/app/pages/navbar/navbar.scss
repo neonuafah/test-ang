@@ -9,17 +9,20 @@ $font-stack: 'Sarabun', sans-serif;
     display: block;
     background-color: $bg-color;
     font-family: $font-stack;
-    overflow-y: auto; // Enable scrolling if needed
+    // overflow-y: auto; // Removed to let parent handle scrolling
     overflow-x: hidden; // Hide horizontal scrollbar
 
     // Hide scrollbar for Chrome, Safari and Opera
     &::-webkit-scrollbar {
-        display: none;
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        background: transparent !important;
     }
 
     // Hide scrollbar for IE, Edge and Firefox
-    -ms-overflow-style: none; // IE and Edge
-    scrollbar-width: none; // Firefox
+    -ms-overflow-style: none !important; // IE and Edge
+    scrollbar-width: none !important; // Firefox
 }
 
 // --- Header Section ---
@@ -27,7 +30,7 @@ $font-stack: 'Sarabun', sans-serif;
     display: flex;
     align-items: center;
     padding: 12px 16px;
-    cursor: default;
+    cursor: pointer;
     transition: background-color 0.5s ease, color 0.5s ease;
 
     // --- ส่วนที่เพิ่ม Hover ---
@@ -58,6 +61,11 @@ $font-stack: 'Sarabun', sans-serif;
 
     .arrow-icon {
         color: #111;
+        transition: transform 0.3s ease;
+
+        &.collapsed {
+            transform: rotate(-90deg);
+        }
     }
 }
 
@@ -69,12 +77,15 @@ $font-stack: 'Sarabun', sans-serif;
 
     // Hide scrollbar for Chrome, Safari and Opera
     &::-webkit-scrollbar {
-        display: none;
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        background: transparent !important;
     }
 
     // Hide scrollbar for IE, Edge and Firefox
-    -ms-overflow-style: none; // IE and Edge
-    scrollbar-width: none; // Firefox
+    -ms-overflow-style: none !important; // IE and Edge
+    scrollbar-width: none !important; // Firefox
 }
 
 .nav-item {
@@ -135,4 +146,42 @@ $font-stack: 'Sarabun', sans-serif;
 // สีม่วงคราม
 .c-setting {
     color: #0277bd;
+}
+
+// --- Submenu Styles ---
+.nav-item-wrapper {
+    .nav-item-parent {
+        cursor: pointer;
+        position: relative;
+    }
+}
+
+.setting-arrow-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #111;
+    transition: transform 0.3s ease;
+
+    &.collapsed {
+        transform: translateY(-50%) rotate(-90deg);
+    }
+}
+
+.submenu {
+    .nav-subitem {
+        margin-left: 48px; // Extra indentation for submenu items
+        font-size: 0.9rem;
+
+        mat-icon {
+            font-size: 18px;
+            width: 18px;
+            height: 18px;
+        }
+    }
+}
+
+.c-submenu {
+    color: #3b82f6;
 }

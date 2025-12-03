@@ -33,8 +33,89 @@
         <mat-icon matListItemIcon class="c-return">local_shipping</mat-icon>
         <span matListItemTitle>Return Container</span>
     </a>
-    <a mat-list-item routerLink="/setting" routerLinkActive="active" class="nav-item">
-        <mat-icon matListItemIcon class="c-setting">settings</mat-icon>
-        <span matListItemTitle>Setting</span>
-    </a>
+
+    <div class="nav-item-wrapper">
+        <a mat-list-item (click)="toggleSetting()" class="nav-item nav-item-parent">
+            <mat-icon matListItemIcon class="c-setting">settings</mat-icon>
+            <span matListItemTitle>Setting</span>
+            <mat-icon class="setting-arrow-icon" [class.collapsed]="!isSettingExpanded()">arrow_drop_down</mat-icon>
+        </a>
+
+        @if (isSettingExpanded()) {
+        <div class="submenu">
+            <a mat-list-item routerLink="/setting/cost-values" routerLinkActive="active" class="nav-item nav-subitem">
+                <mat-icon matListItemIcon class="c-submenu">link</mat-icon>
+                <span matListItemTitle>กำหนดมูลค่า</span>
+            </a>
+            <a mat-list-item routerLink="/setting/clear-tank" routerLinkActive="active" class="nav-item nav-subitem">
+                <mat-icon matListItemIcon class="c-submenu">link</mat-icon>
+                <span matListItemTitle>เคลียแทงค์ฟอง</span>
+            </a>
+            <a mat-list-item routerLink="/setting/cost-type" routerLinkActive="active" class="nav-item nav-subitem">
+                <mat-icon matListItemIcon class="c-submenu">link</mat-icon>
+                <span matListItemTitle>ประเภทกร</span>
+            </a>
+            <a mat-list-item routerLink="/setting/cost-per-trip" routerLinkActive="active" class="nav-item nav-subitem">
+                <mat-icon matListItemIcon class="c-submenu">link</mat-icon>
+                <span matListItemTitle>สถานะค่า-ทางด่วง</span>
+            </a>
+            <a mat-list-item routerLink="/setting/discount" routerLinkActive="active" class="nav-item nav-subitem">
+                <mat-icon matListItemIcon class="c-submenu">link</mat-icon>
+                <span matListItemTitle>ให้ส่วนลด</span>
+            </a>
+            <a mat-list-item routerLink="/setting/fuel-in-tank" routerLinkActive="active" class="nav-item nav-subitem">
+                <mat-icon matListItemIcon class="c-submenu">link</mat-icon>
+                <span matListItemTitle>พนักงานเติม</span>
+            </a>
+            <a mat-list-item routerLink="/setting/cost-approval" routerLinkActive="active" class="nav-item nav-subitem">
+                <mat-icon matListItemIcon class="c-submenu">link</mat-icon>
+                <span matListItemTitle>บริษัทระวัม</span>
+            </a>
+            <a mat-list-item routerLink="/setting/approve-cost" routerLinkActive="active" class="nav-item nav-subitem">
+                <mat-icon matListItemIcon class="c-submenu">link</mat-icon>
+                <span matListItemTitle>บริษัทอนุมัติ</span>
+            </a>
+            <a mat-list-item routerLink="/setting/unapproved-cost" routerLinkActive="active"
+                class="nav-item nav-subitem">
+                <mat-icon matListItemIcon class="c-submenu">link</mat-icon>
+                <span matListItemTitle>บริษัทไม่อนุมัติ</span>
+            </a>
+            <a mat-list-item routerLink="/setting/unapproved-cost-detail" routerLinkActive="active"
+                class="nav-item nav-subitem">
+                <mat-icon matListItemIcon class="c-submenu">link</mat-icon>
+                <span matListItemTitle>สามารถอนุมัติแบบร่</span>
+            </a>
+            <a mat-list-item routerLink="/setting/unapproved-cost-info" routerLinkActive="active"
+                class="nav-item nav-subitem">
+                <mat-icon matListItemIcon class="c-submenu">link</mat-icon>
+                <span matListItemTitle>บริษัทไม่อนุมัติแบบร่</span>
+            </a>
+            <a mat-list-item routerLink="/setting/driver-info" routerLinkActive="active" class="nav-item nav-subitem">
+                <mat-icon matListItemIcon class="c-submenu">link</mat-icon>
+                <span matListItemTitle>ข้อมูลคนขับ</span>
+            </a>
+            <a mat-list-item routerLink="/setting/driver-detail" routerLinkActive="active" class="nav-item nav-subitem">
+                <mat-icon matListItemIcon class="c-submenu">link</mat-icon>
+                <span matListItemTitle>ข้อมูลคนขับเพิ่ม</span>
+            </a>
+            <a mat-list-item routerLink="/setting/co-loader" routerLinkActive="active" class="nav-item nav-subitem">
+                <mat-icon matListItemIcon class="c-submenu">link</mat-icon>
+                <span matListItemTitle>สายเรือ (Co-loader)</span>
+            </a>
+            <a mat-list-item routerLink="/setting/port" routerLinkActive="active" class="nav-item nav-subitem">
+                <mat-icon matListItemIcon class="c-submenu">link</mat-icon>
+                <span matListItemTitle>ท่าเรือ (Port)</span>
+            </a>
+            <a mat-list-item routerLink="/setting/depot" routerLinkActive="active" class="nav-item nav-subitem">
+                <mat-icon matListItemIcon class="c-submenu">link</mat-icon>
+                <span matListItemTitle>ลานตู้</span>
+            </a>
+            <a mat-list-item routerLink="/setting/fix-costs-type" routerLinkActive="active"
+                class="nav-item nav-subitem">
+                <mat-icon matListItemIcon class="c-submenu">link</mat-icon>
+                <span matListItemTitle>Fix Costs Type</span>
+            </a>
+        </div>
+        }
+    </div>
 </mat-nav-list>}

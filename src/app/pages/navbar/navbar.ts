@@ -11,8 +11,13 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class Navbar {
     isExpanded = signal(true);
+    isSettingExpanded = signal(false);
 
     toggleMenu() {
         this.isExpanded.update(value => !value);
+    }
+
+    toggleSetting() {
+        this.isSettingExpanded.update(value => !value);
     }
 }
