@@ -52,17 +52,13 @@ app-navbar {
     box-sizing: border-box;
 }
 
+// Overlay mode styling - navbar overlays content without pushing it
 .sidenav-container.nav-open.overlay-mode .content {
     filter: brightness(0.95);
-    transform: scale(0.96);
+    transform: scale(0.98);
+    transition: filter 0.3s ease, transform 0.3s ease;
 }
 
 .sidenav-container .mat-drawer-backdrop {
     display: none !important;
-}
-
-.sidenav-container.nav-open.overlay-mode .content {
-    margin-left: 15.5%;
-    width: calc(100% - 15.5%);
-    transition: margin-left 0.3s ease, width 0.3s ease, transform 0.3s ease;
 }
