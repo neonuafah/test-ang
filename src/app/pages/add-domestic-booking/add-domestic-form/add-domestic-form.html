@@ -9,7 +9,7 @@
                 <div class="header-right">
                     <label class="input-label">Booking No.</label>
                     <mat-form-field appearance="outline" class="booking-no-field">
-                        <input formControlName="bookingNo" placeholder="Booking No.">
+                        <input matInput formControlName="bookingNo" placeholder="Booking No.">
                     </mat-form-field>
                 </div>
             </div>
@@ -369,7 +369,7 @@
 
                 </div>
             </mat-card-content>
-
+            <app-add-invoice></app-add-invoice>
             <mat-card-actions class="footer-actions">
                 <button mat-flat-button routerLink="/booking" color="warn" class="cancel-btn">ยกเลิก</button>
                 <button mat-flat-button color="primary" class="save-btn" (click)="onSave()">บันทึก</button>

@@ -1,0 +1,48 @@
+.demo-table {
+    width: 100%;
+}
+
+::ng-deep .mat-mdc-header-row {
+    background-color: #d6d6d6 !important;
+}
+
+.add-invoice {
+    display: flex;
+    padding: 8px;
+    justify-content: flex-start;
+    background-color: #1d82d5;
+    border-radius: 5px;
+}
+
+.add-invoice-button {
+    background-color: rgb(6, 213, 6);
+    color: white;
+}
+
+.import-button {
+    background-color: rgb(6, 213, 6);
+    margin-left: 8px;
+    color: white;
+}
+
+.mat-column-demo-position {
+    width: 32px;
+    border-right: 1px solid currentColor;
+    padding-right: 24px;
+    text-align: center;
+}
+
+.mat-column-demo-name {
+    padding-left: 16px;
+    font-size: 20px;
+}
+
+.mat-column-demo-weight {
+    font-style: italic;
+}
+
+.mat-column-demo-symbol {
+    width: 32px;
+    text-align: center;
+    font-weight: bold;
+}

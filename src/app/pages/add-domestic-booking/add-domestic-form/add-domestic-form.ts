@@ -17,10 +17,11 @@ import { BookingService } from '../../../services/booking.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SuccessModalComponent } from '../../add-import-booking/form/success-modal.component';
-
+import { AddInvoice } from '../../add-invoice/add-invoice';
 
 @Component({
   selector: 'app-add-domestic-form',
+  standalone: true,
   imports: [CommonModule,
     MatCardModule,
     MatFormFieldModule,
@@ -35,7 +36,8 @@ import { SuccessModalComponent } from '../../add-import-booking/form/success-mod
     MatNativeDateModule,
     MatAutocompleteModule,
     MatSnackBarModule,
-    MatDialogModule],
+    MatDialogModule,
+    AddInvoice],
   templateUrl: './add-domestic-form.html',
   styleUrl: './add-domestic-form.scss',
 })

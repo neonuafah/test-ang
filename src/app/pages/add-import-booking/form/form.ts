@@ -16,6 +16,7 @@ import { BookingService } from '../../../services/booking.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { SuccessModalComponent } from './success-modal.component';
+import { AddInvoice } from '../../add-invoice/add-invoice';
 
 
 @Component({
@@ -36,7 +37,8 @@ import { SuccessModalComponent } from './success-modal.component';
     MatNativeDateModule,
     MatAutocompleteModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    AddInvoice
   ],
   templateUrl: './form.html',
   styleUrl: './form.scss',
