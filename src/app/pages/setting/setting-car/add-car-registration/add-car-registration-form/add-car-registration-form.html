@@ -1,0 +1,268 @@
+<div class="page-container">
+    <div class="page-header">
+        <button class="page-header-title">เพิ่มทะเบียนรถ</button>
+    </div>
+
+    <div class="page-content">
+        <div class="form-grid">
+
+            <div class="form-container">
+                <div class="form-label">Vehicle No.</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="ทะเบียนรถ">
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-label">Branch</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="สาขา">
+                    </mat-form-field>
+                    <button class="action-btn">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-label">Truck Type</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="ประเภทรถ">
+                    </mat-form-field>
+                    <button class="action-btn">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-label">Brand</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="ยี่ห้อ">
+                    </mat-form-field>
+                    <button class="action-btn">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-label">หมายเลขเครื่องยนต์</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="หมายเลขเครื่องยนต์">
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-label">หมายเลขตัวรถ</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="หมายเลขตัวรถ">
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-label">Color</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="สี">
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-label">Fuel Type</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="ประเภทเชื้อเพลิง">
+                    </mat-form-field>
+                    <button class="action-btn">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-label">แบบ/รุ่น</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="แบบ/รุ่น">
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-label">น้ำหนักที่ขนได้(kg)</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="น้ำหนักที่ขนได้">
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-label">Insurance</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="ประกันภัย">
+                    </mat-form-field>
+                    <button class="action-btn">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-label">Registration Date</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput [matDatepicker]="picker" placeholder="วันจดทะเบียน" readonly
+                            (click)="picker.open()">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-label">เฉลี่ยไมล์ต่อเชื้อเพลิง</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="เฉลี่ยไมล์ต่อเชื้อเพลิง">
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-label">ค่าบำรุงรักษาต่อกิโลเมตร</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="ค่าบำรุงรักษาต่อกิโลเมตร">
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-label">ค่ายางรถต่อกิโลเมตร</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="ค่ายางรถต่อกิโลเมตร">
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-label">Mileage</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="Mileage">
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-label">Last Mileage</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="Last Mileage">
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-label">ความกว้างของตู้</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="ความกว้างของตู้">
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-label">ความยาวของตู้</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="ความยาวของตู้">
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-label">ความสูงของตู้</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="ความสูงของตู้">
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-label">น้ำหนักของรถ(kg)</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="น้ำหนักของรถ">
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="form-label">CBM</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="CBM">
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <div class="form-container upload-container">
+                <div class="form-label">Upload File</div>
+                <div class="form-input-group file-upload-group">
+                    <input type="file" #fileInput hidden (change)="onFileSelected($event)" multiple>
+
+                    <button class="upload-btn-full" (click)="fileInput.click()">
+                        <mat-icon>upload_file</mat-icon>
+                        <span>Choose Files...</span>
+                    </button>
+                </div>
+
+                <div class="file-stack" *ngIf="files.length > 0">
+                    <div class="file-item-stack" *ngFor="let file of files; let i = index">
+                        <div class="file-info">
+                            <mat-icon class="file-icon-small">attach_file</mat-icon>
+                            <span class="file-name">{{ file.name }}</span>
+                        </div>
+                        <button class="remove-file-icon" (click)="removeFile(i)">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

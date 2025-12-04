@@ -1,0 +1,85 @@
+.page-container {
+    padding: 24px; // เปลี่ยน margin เป็น padding เพื่อไม่ให้ติดขอบจอเกินไป
+}
+
+.page-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .page-header-title {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    .add-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 12px;
+        width: 135px;
+        height: 40px;
+        background-color: rgb(6, 213, 6);
+        color: white;
+        font-weight: bold;
+        border-radius: 50px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: rgb(9, 161, 9);
+        }
+    }
+}
+
+.search-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+
+    .filter-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 5px;
+        gap: 2px;
+        width: 100px;
+        height: 40px;
+        background-color: transparent;
+        color: rgb(15, 143, 255);
+        border-radius: 50px;
+        border: none;
+        cursor: pointer;
+    }
+}
+
+// ปรับแต่งตัวกล่อง Search
+.search-box {
+    width: 100%;
+    max-width: 300px; // กำหนดความกว้างสูงสุดไม่ให้ยาวเกินไป
+    font-size: 14px;
+
+    // เจาะจงเข้าไปปรับ Style ของ Angular Material
+    ::ng-deep .mat-mdc-text-field-wrapper {
+        background-color: #fff; // สีพื้นหลังกล่อง
+        border-radius: 50px; // ทำขอบมนแบบแคปซูล (Pill shape)
+    }
+
+    // ปรับสี icon
+    mat-icon {
+        color: #757575;
+        cursor: pointer;
+
+        &:hover {
+            color: #333; // เปลี่ยนสีเมื่อเอาเมาส์ไปชี้
+        }
+    }
+
+    // (Optional) ถ้าต้องการลบพื้นที่ว่างด้านล่างของ input (ที่เอาไว้โชว์ error)
+    ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+        display: none;
+    }
+}

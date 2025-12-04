@@ -88,6 +88,18 @@ $font-stack: 'Sarabun', sans-serif;
     scrollbar-width: none !important; // Firefox
 }
 
+.setting-item {
+    margin-left: 24px;
+    padding-bottom: 0px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.mdc-list-item.mdc-list-item--with-two-lines {
+    height: var(--mat-list-list-item-two-line-container-height, 52px);
+    justify-content: center;
+    align-items: center;
+}
+
 .nav-item {
     margin-left: 24px;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -158,7 +170,7 @@ $font-stack: 'Sarabun', sans-serif;
 
 .setting-arrow-icon {
     position: absolute;
-    right: 16px;
+    right: 30px;
     top: 50%;
     transform: translateY(-50%);
     color: #111;

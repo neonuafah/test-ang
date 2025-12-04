@@ -5,10 +5,11 @@ import { JobQueueComponent } from './pages/job-queue/job-queue.component';
 import { DispatchCenterComponent } from './pages/dispatch-center/dispatch-center.component';
 import { JobTrackingComponent } from './pages/job-tracking/job-tracking.component';
 import { ReturnContainerComponent } from './pages/return-container/return-container.component';
-import { SettingComponent } from './pages/setting/setting.component';
 import { AddImportBookingComponent } from './pages/add-import-booking/add-import-booking';
 import { AddExportBooking } from './pages/add-export-booking/add-export-booking';
 import { AddDomesticBooking } from './pages/add-domestic-booking/add-domestic-booking';
+import { SettingCar } from './pages/setting/setting-car/setting-car';
+import { AddCarRegistration } from './pages/setting/setting-car/add-car-registration/add-car-registration';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -18,8 +19,9 @@ export const routes: Routes = [
     { path: 'dispatch-center', component: DispatchCenterComponent },
     { path: 'job-tracking', component: JobTrackingComponent },
     { path: 'return-container', component: ReturnContainerComponent },
-    { path: 'setting', component: SettingComponent },
     { path: 'booking/add-import-booking', component: AddImportBookingComponent },
     { path: 'booking/add-export-booking', component: AddExportBooking },
     { path: 'booking/add-domestic-booking', component: AddDomesticBooking },
+    { path: 'setting/car', component: SettingCar },
+    { path: 'setting/car/add-car-registration', component: AddCarRegistration },
 ];
