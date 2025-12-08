@@ -29,6 +29,7 @@ $font-stack: 'Sarabun', sans-serif;
 .nav-header {
     display: flex;
     align-items: center;
+    width: 200px;
     padding: 12px 16px;
     cursor: pointer;
     transition: background-color 0.5s ease, color 0.5s ease;
@@ -61,12 +62,17 @@ $font-stack: 'Sarabun', sans-serif;
 
     .arrow-icon {
         color: #111;
+        margin-right: 0;
         transition: transform 0.3s ease;
 
         &.collapsed {
             transform: rotate(-90deg);
         }
     }
+}
+
+.mat-mdc-nav-list .mat-mdc-list-item {
+    border-radius: 8px;
 }
 
 // --- Menu List ---
@@ -89,7 +95,7 @@ $font-stack: 'Sarabun', sans-serif;
 }
 
 .setting-item {
-    margin-left: 24px;
+    margin-left: 12px;
     padding-bottom: 0px;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -101,7 +107,7 @@ $font-stack: 'Sarabun', sans-serif;
 }
 
 .nav-item {
-    margin-left: 24px;
+    margin-left: 12px;
     transition: background-color 0.3s ease, color 0.3s ease;
 
     // State: Hover
@@ -183,7 +189,7 @@ $font-stack: 'Sarabun', sans-serif;
 
 .submenu {
     .nav-subitem {
-        margin-left: 48px; // Extra indentation for submenu items
+        margin-left: 28px; // Extra indentation for submenu items
         font-size: 0.9rem;
 
         mat-icon {

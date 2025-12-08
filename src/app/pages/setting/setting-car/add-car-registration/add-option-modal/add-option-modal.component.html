@@ -1,0 +1,15 @@
+<div class="modal-container">
+    <h2 mat-dialog-title>{{ data.title }}</h2>
+
+    <div mat-dialog-content>
+        <mat-form-field appearance="outline" class="full-width" subscriptSizing="dynamic">
+            <input matInput [(ngModel)]="newValue" placeholder="New Option Name">
+        </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions align="end">
+        <button mat-button (click)="onCancel()">Cancel</button>
+        <button mat-raised-button color="primary" class="btn-save" (click)="onSave()"
+            [disabled]="!newValue.trim()">Save</button>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+.modal-container {
+    padding: 0;
+    min-width: 300px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+h2[mat-dialog-title] {
+    background-color: #3f51b5;
+    color: white;
+    padding-top: 0;
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+::ng-deep .mat-mdc-dialog-content {
+    padding-top: 25px !important;
+}
+
+// *** ส่วนที่เพิ่ม ***
+div[mat-dialog-content] {
+    padding: 24px 24px 0 24px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.btn-save {
+
+    // สั่งให้เป็นสีเขียว "เฉพาะตอนที่ปุ่มไม่ Disabled"
+    &:not(:disabled) {
+        background-color: #34cd57 !important;
+        /* สีเขียว (ปรับเฉดได้ตามชอบ) */
+        color: white !important;
+    }
+}

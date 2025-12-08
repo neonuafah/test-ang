@@ -20,9 +20,13 @@
                 <div class="form-label">Branch</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <input matInput placeholder="สาขา">
+                        <mat-select placeholder="สาขา">
+                            <mat-option *ngFor="let option of branchOptions" [value]="option.value">
+                                {{ option.value }}
+                            </mat-option>
+                        </mat-select>
                     </mat-form-field>
-                    <button class="action-btn">
+                    <button class="action-btn" (click)="openAddOptionModal('Branch', 'Add Branch')">
                         <mat-icon>add</mat-icon>
                     </button>
                 </div>
@@ -32,9 +36,13 @@
                 <div class="form-label">Truck Type</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <input matInput placeholder="ประเภทรถ">
+                        <mat-select placeholder="ประเภทรถ">
+                            <mat-option *ngFor="let option of carTypeOptions" [value]="option.value">
+                                {{ option.value }}
+                            </mat-option>
+                        </mat-select>
                     </mat-form-field>
-                    <button class="action-btn">
+                    <button class="action-btn" (click)="openAddOptionModal('CarType', 'Add Truck Type')">
                         <mat-icon>add</mat-icon>
                     </button>
                 </div>
@@ -44,9 +52,13 @@
                 <div class="form-label">Brand</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <input matInput placeholder="ยี่ห้อ">
+                        <mat-select placeholder="ยี่ห้อ">
+                            <mat-option *ngFor="let option of brandOptions" [value]="option.value">
+                                {{ option.value }}
+                            </mat-option>
+                        </mat-select>
                     </mat-form-field>
-                    <button class="action-btn">
+                    <button class="action-btn" (click)="openAddOptionModal('Brand', 'Add Brand')">
                         <mat-icon>add</mat-icon>
                     </button>
                 </div>
@@ -86,9 +98,13 @@
                 <div class="form-label">Fuel Type</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <input matInput placeholder="ประเภทเชื้อเพลิง">
+                        <mat-select placeholder="ประเภทเชื้อเพลิง">
+                            <mat-option *ngFor="let option of fuelTypeOptions" [value]="option.value">
+                                {{ option.value }}
+                            </mat-option>
+                        </mat-select>
                     </mat-form-field>
-                    <button class="action-btn">
+                    <button class="action-btn" (click)="openAddOptionModal('FuelType', 'Add Fuel Type')">
                         <mat-icon>add</mat-icon>
                     </button>
                 </div>
@@ -118,9 +134,13 @@
                 <div class="form-label">Insurance</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <input matInput placeholder="ประกันภัย">
+                        <mat-select placeholder="ประกันภัย">
+                            <mat-option *ngFor="let option of insuranceOptions" [value]="option.value">
+                                {{ option.value }}
+                            </mat-option>
+                        </mat-select>
                     </mat-form-field>
-                    <button class="action-btn">
+                    <button class="action-btn" (click)="openAddOptionModal('Insurance', 'Add Insurance')">
                         <mat-icon>add</mat-icon>
                     </button>
                 </div>
