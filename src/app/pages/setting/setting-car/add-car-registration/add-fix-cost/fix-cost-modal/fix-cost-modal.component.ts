@@ -110,6 +110,5 @@ export class FixCostModalComponent implements OnInit {
 
     addNewType(): void {
         // Placeholder for adding new type functionality
-        console.log('Add new type clicked');
     }
 }

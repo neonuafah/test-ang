@@ -37,12 +37,12 @@
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
                         <mat-select placeholder="ประเภทรถ">
-                            <mat-option *ngFor="let option of carTypeOptions" [value]="option.value">
+                            <mat-option *ngFor="let option of truckTypeOptions" [value]="option.value">
                                 {{ option.value }}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <button class="action-btn" (click)="openAddOptionModal('CarType', 'Add Truck Type')">
+                    <button class="action-btn" (click)="openAddOptionModal('TruckType', 'Add Truck Type')">
                         <mat-icon>add</mat-icon>
                     </button>
                 </div>

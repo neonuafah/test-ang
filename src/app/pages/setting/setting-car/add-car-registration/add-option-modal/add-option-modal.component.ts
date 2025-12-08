@@ -41,11 +41,13 @@ export class AddOptionModalComponent {
 
     onSave(): void {
         if (this.newValue.trim()) {
-            // Emit event to add new setting
-            this.socketService.emit('createSetting', {
+            const dataToEmit = {
                 category: this.data.category,
                 value: this.newValue.trim()
-            });
+            };
+
+            // Emit event to add new setting
+            this.socketService.emit('createSetting', dataToEmit);
 
             this.dialogRef.close(this.newValue.trim());
         }

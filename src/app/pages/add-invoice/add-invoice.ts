@@ -60,7 +60,6 @@ export class AddInvoice {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Handle imported data - add to table
-        console.log('Imported data:', result);
         this.dataSource = [...this.dataSource, ...result];
       }
     });

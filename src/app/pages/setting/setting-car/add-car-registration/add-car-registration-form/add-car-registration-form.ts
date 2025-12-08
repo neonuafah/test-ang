@@ -24,7 +24,7 @@ export class AddCarRegistrationForm implements OnInit {
 
   // Dropdown Options
   branchOptions: any[] = [];
-  carTypeOptions: any[] = [];
+  truckTypeOptions: any[] = [];
   brandOptions: any[] = [];
   fuelTypeOptions: any[] = [];
   insuranceOptions: any[] = [];
@@ -37,7 +37,7 @@ export class AddCarRegistrationForm implements OnInit {
   ngOnInit(): void {
     // Initial fetch for all categories
     this.socketService.emit('getSettings', 'Branch');
-    this.socketService.emit('getSettings', 'CarType');
+    this.socketService.emit('getSettings', 'TruckType');
     this.socketService.emit('getSettings', 'Brand');
     this.socketService.emit('getSettings', 'FuelType');
     this.socketService.emit('getSettings', 'Insurance');
@@ -46,7 +46,7 @@ export class AddCarRegistrationForm implements OnInit {
     this.socketService.listen('settingsList').subscribe((data: any) => {
       const { category, options } = data;
       if (category === 'Branch') this.branchOptions = options;
-      if (category === 'CarType') this.carTypeOptions = options;
+      if (category === 'TruckType') this.truckTypeOptions = options;
       if (category === 'Brand') this.brandOptions = options;
       if (category === 'FuelType') this.fuelTypeOptions = options;
       if (category === 'Insurance') this.insuranceOptions = options;
@@ -55,7 +55,7 @@ export class AddCarRegistrationForm implements OnInit {
     // Listen for new setting added (real-time update)
     this.socketService.listen('newSettingAdded').subscribe((newOption: any) => {
       if (newOption.category === 'Branch') this.branchOptions.push(newOption);
-      if (newOption.category === 'CarType') this.carTypeOptions.push(newOption);
+      if (newOption.category === 'TruckType') this.truckTypeOptions.push(newOption);
       if (newOption.category === 'Brand') this.brandOptions.push(newOption);
       if (newOption.category === 'FuelType') this.fuelTypeOptions.push(newOption);
       if (newOption.category === 'Insurance') this.insuranceOptions.push(newOption);

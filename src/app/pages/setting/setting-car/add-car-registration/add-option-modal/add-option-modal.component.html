@@ -3,7 +3,7 @@
 
     <div mat-dialog-content>
         <mat-form-field appearance="outline" class="full-width" subscriptSizing="dynamic">
-            <input matInput [(ngModel)]="newValue" placeholder="New Option Name">
+            <input matInput [(ngModel)]="newValue" [placeholder]="'New ' + data.category + ' Name'">
         </mat-form-field>
     </div>
 
