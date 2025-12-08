@@ -1,1 +1,80 @@
-<p>add-fix-cost works!</p>
+<div class="fix-cost-container">
+    <!-- Add Button -->
+    <div class="button-section">
+        <button mat-raised-button class="add-button" (click)="openAddModal()">
+            <mat-icon>add</mat-icon>
+            Fix Costs
+        </button>
+    </div>
+
+    <!-- Table -->
+    <div class="table-container">
+        <table mat-table [dataSource]="fixCosts" class="fix-cost-table">
+            <!-- Details Column -->
+            <ng-container matColumnDef="details">
+                <th mat-header-cell *matHeaderCellDef>Details</th>
+                <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+            </ng-container>
+
+            <!-- Calculation Start Date Column -->
+            <ng-container matColumnDef="calculationStartDate">
+                <th mat-header-cell *matHeaderCellDef>Calculation Start Date</th>
+                <td mat-cell *matCellDef="let element">{{ element.calculationStartDate | date:'dd/MM/yyyy' }}</td>
+            </ng-container>
+
+            <!-- Price Column -->
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef>Price</th>
+                <td mat-cell *matCellDef="let element">{{ element.price | number:'1.2-2' }}</td>
+            </ng-container>
+
+            <div class="form-container">
+                <div class="form-label">ความกว้างของตู้</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="ความกว้างของตู้">
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <!-- Start Date Column -->
+            <ng-container matColumnDef="startDate">
+                <th mat-header-cell *matHeaderCellDef>Start Date</th>
+                <td mat-cell *matCellDef="let element">{{ element.startDate | date:'dd/MM/yyyy' }}</td>
+            </ng-container>
+
+            <!-- End Date Column -->
+            <ng-container matColumnDef="endDate">
+                <th mat-header-cell *matHeaderCellDef>End Date</th>
+                <td mat-cell *matCellDef="let element">{{ element.endDate | date:'dd/MM/yyyy' }}</td>
+            </ng-container>
+
+            <!-- Document Column -->
+            <ng-container matColumnDef="document">
+                <th mat-header-cell *matHeaderCellDef>Document</th>
+                <td mat-cell *matCellDef="let element">
+                    <a *ngIf="element.documentName" class="document-link">{{ element.documentName }}</a>
+                    <span *ngIf="!element.documentName">-</span>
+                </td>
+            </ng-container>
+
+            <!-- Actions Column -->
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element; let i = index">
+                    <button mat-icon-button class="delete-button" (click)="deleteRow(i)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <div *ngIf="fixCosts.length === 0" class="no-data">
+            ไม่มีข้อมูล
+        </div>
+    </div>
+</div>

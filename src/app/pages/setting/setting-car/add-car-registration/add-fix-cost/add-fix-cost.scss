@@ -1,0 +1,99 @@
+.fix-cost-container {
+    padding: 16px;
+}
+
+.button-section {
+    margin-bottom: 16px;
+
+    .add-button {
+        background-color: #4caf50;
+        color: white;
+        font-weight: 500;
+        border-radius: 8px;
+        padding: 6px 16px;
+
+        mat-icon {
+            margin-right: 4px;
+        }
+
+        &:hover {
+            background-color: #45a049;
+        }
+    }
+}
+
+.table-container {
+    overflow-x: auto;
+    border-radius: 8px;
+}
+
+.fix-cost-table {
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    th.mat-mdc-header-cell {
+        background-color: #1976d2;
+        color: white;
+        font-weight: 600;
+        padding: 12px 16px;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    td.mat-mdc-cell {
+        padding: 12px 16px;
+        text-align: center;
+        border-bottom: 1px solid #e0e0e0;
+        font-size: 14px;
+        color: #333;
+    }
+
+    tr.mat-mdc-row:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr.mat-mdc-row:hover {
+        background-color: #e3f2fd;
+    }
+
+    .document-link {
+        color: #1976d2;
+        text-decoration: none;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .delete-button {
+        color: #f44336;
+
+        &:hover {
+            background-color: rgba(244, 67, 54, 0.1);
+        }
+
+        mat-icon {
+            font-size: 22px;
+            width: 22px;
+            height: 22px;
+        }
+    }
+}
+
+.no-data {
+    text-align: center;
+    padding: 32px;
+    color: #666;
+    font-size: 14px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+
+// Global modal panel class
+::ng-deep .fix-cost-modal-panel {
+    .mat-mdc-dialog-container {
+        border-radius: 16px;
+        overflow: hidden;
+    }
+}

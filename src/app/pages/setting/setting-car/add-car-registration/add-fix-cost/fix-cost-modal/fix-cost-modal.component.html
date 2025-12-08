@@ -1,0 +1,103 @@
+<div class="modal-container">
+    <div class="modal-header">
+        <mat-icon class="header-icon">add_circle</mat-icon>
+        <div class="header-text">Fix Costs</div>
+    </div>
+
+    <div mat-dialog-content class="modal-content">
+        <form [formGroup]="fixCostForm">
+            <div class="form-row">
+                <label class="form-label">Type</label>
+                <div class="input-with-button">
+                    <mat-form-field appearance="outline" class="form-field dense-form-field">
+                        <mat-select formControlName="type" placeholder="ประเภท">
+                            <mat-option *ngFor="let type of costTypes" [value]="type">
+                                {{ type }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <button class="add-type-btn" (click)="addNewType()" type="button">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">Calculation Start Date</label>
+                <div class="input-with-button">
+                    <mat-form-field appearance="outline" class="form-field dense-form-field" subscriptSizing="dynamic">
+                        <input matInput [matDatepicker]="calcPicker" formControlName="calculationStartDate"
+                            placeholder="วันที่เริ่มคำนวน" readonly (click)="calcPicker.open()">
+                        <mat-datepicker-toggle matIconSuffix [for]="calcPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #calcPicker></mat-datepicker>
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">Price</label>
+                <div class="input-with-button">
+                    <mat-form-field appearance="outline" class="form-field dense-form-field">
+                        <input matInput type="number" formControlName="price" placeholder="จำนวน (บาท)">
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">Start Date</label>
+                <div class="input-with-button">
+                    <mat-form-field appearance="outline" class="form-field dense-form-field" subscriptSizing="dynamic">
+                        <input matInput [matDatepicker]="startPicker" formControlName="startDate"
+                            placeholder="วันที่เริ่มต้น" readonly (click)="startPicker.open()">
+                        <mat-datepicker-toggle matIconSuffix [for]="startPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #startPicker></mat-datepicker>
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">End Date</label>
+                <div class="input-with-button">
+                    <mat-form-field appearance="outline" class="form-field dense-form-field" subscriptSizing="dynamic">
+                        <input matInput [matDatepicker]="endPicker" formControlName="endDate" placeholder="วันสิ้นสุด"
+                            readonly (click)="endPicker.open()">
+                        <mat-datepicker-toggle matIconSuffix [for]="endPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #endPicker></mat-datepicker>
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">Document</label>
+                <div class="file-input-container">
+                    <input #fileInput type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" style="display: none"
+                        (change)="onFileSelected($event)">
+
+                    <div class="choose-file-wrapper" (click)="onChooseFile()">
+                        <span class="choose-text">Choose File</span>
+                    </div>
+
+                    <span class="file-name" *ngIf="selectedFileName">{{ selectedFileName }}</span>
+                    <span class="file-name placeholder" *ngIf="!selectedFileName">Image.jpg</span>
+
+                    <button mat-icon-button *ngIf="selectedFileName" (click)="clearFile()" type="button"
+                        class="clear-file-btn">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <button mat-icon-button *ngIf="!selectedFileName" type="button" class="clear-file-btn">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div mat-dialog-actions class="modal-actions">
+        <button mat-raised-button class="cancel-button" (click)="onCancel()">Cancel</button>
+        <button mat-raised-button class="save-button" (click)="onSave()">Save</button>
+    </div>
+</div>
