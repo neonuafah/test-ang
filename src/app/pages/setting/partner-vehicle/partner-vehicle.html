@@ -1,0 +1,72 @@
+<div class="page-container">
+    <div class="page-header">
+        <h2 class="page-header-title">Partner Vehicle</h2>
+        <button mat-button color="primary" class="add-btn" routerLink="/setting/partner-vehicle/add-partner-vehicle">
+            <mat-icon>add</mat-icon> เพิ่ม ทะเบียนรถร่วม
+        </button>
+    </div>
+
+    <div class="search-section">
+        <mat-form-field class="search-box" appearance="outline">
+            <mat-label>ค้นหา ทะเบียนรถ</mat-label>
+            <input matInput placeholder="ระบุเลขทะเบียน..." value="">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+        <button mat-button class="filter-btn">
+            <mat-icon>filter_alt</mat-icon> ตัวกรอง
+        </button>
+    </div>
+
+    <div class="table-section">
+        <div class="table-container mat-elevation-z2">
+            <table mat-table [dataSource]="partnerVehicles">
+
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> Status </th>
+                    <td mat-cell *matCellDef="let element">
+                        <span [ngClass]="{
+                            'status-badge': true,
+                            'status-active': element.status?.toLowerCase() === 'active',
+                            'status-inactive': element.status?.toLowerCase() === 'inactive'
+                        }">
+                            {{ element.status || '-' }}
+                        </span>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="branch">
+                    <th mat-header-cell *matHeaderCellDef> Branch </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.branch || '-' }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="truckType">
+                    <th mat-header-cell *matHeaderCellDef> Truck Type </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.truckType || '-' }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="contact">
+                    <th mat-header-cell *matHeaderCellDef> Contact </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.contact || '-' }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="phone">
+                    <th mat-header-cell *matHeaderCellDef> Phone </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.phone || '-' }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="remark">
+                    <th mat-header-cell *matHeaderCellDef> Remark </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.remark || '-' }} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <div class="empty-state" *ngIf="partnerVehicles.length === 0">
+                <mat-icon>local_shipping</mat-icon>
+                <p>ยังไม่มีข้อมูลทะเบียนรถร่วม</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,99 @@
+<div class="page-container">
+    <div class="page-header">
+        <button class="page-header-title">เพิ่มทะเบียนรถร่วม</button>
+    </div>
+
+    <div class="page-content">
+        <div class="form-grid">
+            <!-- Column 1 -->
+            <div class="form-column">
+                <div class="form-container">
+                    <div class="form-label">Branch</div>
+                    <div class="form-input-group">
+                        <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                            <mat-select placeholder="สาขา" [(ngModel)]="branch">
+                                <mat-option *ngFor="let option of branchOptions" [value]="option.value">
+                                    {{ option.value }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <button class="action-btn" (click)="openAddOptionModal('Branch', 'Add Branch')">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <div class="form-label">Truck type</div>
+                    <div class="form-input-group">
+                        <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                            <mat-select placeholder="ประเภทรถ" [(ngModel)]="truckType">
+                                <mat-option *ngFor="let option of truckTypeOptions" [value]="option.value">
+                                    {{ option.value }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <button class="action-btn" (click)="openAddOptionModal('TruckType', 'Add Truck Type')">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <div class="form-label">Contact</div>
+                    <div class="form-input-group">
+                        <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                            <input matInput placeholder="ชื่อผู้ติดต่อ" [(ngModel)]="contact">
+                        </mat-form-field>
+                        <div class="action-btn-spacer"></div>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <div class="form-label">Phone</div>
+                    <div class="form-input-group">
+                        <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                            <input matInput placeholder="เบอร์ติดต่อ" [(ngModel)]="phone">
+                        </mat-form-field>
+                        <div class="action-btn-spacer"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="form-column">
+                <div class="form-container">
+                    <div class="form-label">Remark</div>
+                    <div class="form-input-group">
+                        <mat-form-field appearance="outline" subscriptSizing="dynamic" class="remark-field">
+                            <textarea matInput placeholder="หมายเหตุ" [(ngModel)]="remark" rows="4"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="form-container status-container">
+                    <div class="form-label">Status</div>
+                    <div class="toggle-container">
+                        <mat-slide-toggle [(ngModel)]="isActive" [color]="'primary'">
+                        </mat-slide-toggle>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fix Costs Section -->
+    <app-add-fix-cost></app-add-fix-cost>
+
+    <!-- Save/Cancel Buttons -->
+    <div class="button-container">
+        <button class="btn-cancel" (click)="onCancel()">
+            <mat-icon>close</mat-icon>
+            ยกเลิก
+        </button>
+        <button class="btn-save" (click)="onSave()">
+            <mat-icon>save</mat-icon>
+            บันทึก
+        </button>
+    </div>
+</div>

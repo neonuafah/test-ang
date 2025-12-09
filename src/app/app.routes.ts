@@ -10,7 +10,8 @@ import { AddExportBooking } from './pages/add-export-booking/add-export-booking'
 import { AddDomesticBooking } from './pages/add-domestic-booking/add-domestic-booking';
 import { SettingCar } from './pages/setting/setting-car/setting-car';
 import { AddCarRegistration } from './pages/setting/setting-car/add-car-registration/add-car-registration';
-
+import { PartnerVehicle } from './pages/setting/partner-vehicle/partner-vehicle';
+import { AddPartnerVehicle } from './pages/setting/partner-vehicle/add-partner-vehicle/add-partner-vehicle';
 export const routes: Routes = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     { path: 'dashboard', component: DashboardComponent },
@@ -24,4 +25,6 @@ export const routes: Routes = [
     { path: 'booking/add-domestic-booking', component: AddDomesticBooking },
     { path: 'setting/car', component: SettingCar },
     { path: 'setting/car/add-car-registration', component: AddCarRegistration },
+    { path: 'setting/partner-vehicle', component: PartnerVehicle },
+    { path: 'setting/partner-vehicle/add-partner-vehicle', component: AddPartnerVehicle },
 ];
