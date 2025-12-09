@@ -10,7 +10,7 @@
                 <div class="form-label">Vehicle No.</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <input matInput placeholder="ทะเบียนรถ">
+                        <input matInput placeholder="ทะเบียนรถ" [(ngModel)]="vehicleNumber">
                     </mat-form-field>
                     <div class="action-btn-spacer"></div>
                 </div>
@@ -20,7 +20,7 @@
                 <div class="form-label">Branch</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <mat-select placeholder="สาขา">
+                        <mat-select placeholder="สาขา" [(ngModel)]="branch">
                             <mat-option *ngFor="let option of branchOptions" [value]="option.value">
                                 {{ option.value }}
                             </mat-option>
@@ -36,7 +36,7 @@
                 <div class="form-label">Truck Type</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <mat-select placeholder="ประเภทรถ">
+                        <mat-select placeholder="ประเภทรถ" [(ngModel)]="truckType">
                             <mat-option *ngFor="let option of truckTypeOptions" [value]="option.value">
                                 {{ option.value }}
                             </mat-option>
@@ -52,7 +52,7 @@
                 <div class="form-label">Brand</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <mat-select placeholder="ยี่ห้อ">
+                        <mat-select placeholder="ยี่ห้อ" [(ngModel)]="brand">
                             <mat-option *ngFor="let option of brandOptions" [value]="option.value">
                                 {{ option.value }}
                             </mat-option>
@@ -65,10 +65,20 @@
             </div>
 
             <div class="form-container">
+                <div class="form-label">Company</div>
+                <div class="form-input-group">
+                    <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                        <input matInput placeholder="บริษัท" [(ngModel)]="company">
+                    </mat-form-field>
+                    <div class="action-btn-spacer"></div>
+                </div>
+            </div>
+
+            <div class="form-container">
                 <div class="form-label">หมายเลขเครื่องยนต์</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <input matInput placeholder="หมายเลขเครื่องยนต์">
+                        <input matInput placeholder="หมายเลขเครื่องยนต์" [(ngModel)]="engineNumber">
                     </mat-form-field>
                     <div class="action-btn-spacer"></div>
                 </div>
@@ -78,7 +88,7 @@
                 <div class="form-label">หมายเลขตัวรถ</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <input matInput placeholder="หมายเลขตัวรถ">
+                        <input matInput placeholder="หมายเลขตัวรถ" [(ngModel)]="chassisNumber">
                     </mat-form-field>
                     <div class="action-btn-spacer"></div>
                 </div>
@@ -88,7 +98,7 @@
                 <div class="form-label">Color</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <input matInput placeholder="สี">
+                        <input matInput placeholder="สี" [(ngModel)]="color">
                     </mat-form-field>
                     <div class="action-btn-spacer"></div>
                 </div>
@@ -98,7 +108,7 @@
                 <div class="form-label">Fuel Type</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <mat-select placeholder="ประเภทเชื้อเพลิง">
+                        <mat-select placeholder="ประเภทเชื้อเพลิง" [(ngModel)]="fuelType">
                             <mat-option *ngFor="let option of fuelTypeOptions" [value]="option.value">
                                 {{ option.value }}
                             </mat-option>
@@ -114,7 +124,7 @@
                 <div class="form-label">แบบ/รุ่น</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <input matInput placeholder="แบบ/รุ่น">
+                        <input matInput placeholder="แบบ/รุ่น" [(ngModel)]="model">
                     </mat-form-field>
                     <div class="action-btn-spacer"></div>
                 </div>
@@ -124,7 +134,7 @@
                 <div class="form-label">น้ำหนักที่ขนได้(kg)</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <input matInput placeholder="น้ำหนักที่ขนได้">
+                        <input matInput placeholder="น้ำหนักที่ขนได้" [(ngModel)]="carryWeight" type="number">
                     </mat-form-field>
                     <div class="action-btn-spacer"></div>
                 </div>
@@ -134,7 +144,7 @@
                 <div class="form-label">Insurance</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <mat-select placeholder="ประกันภัย">
+                        <mat-select placeholder="ประกันภัย" [(ngModel)]="insurance">
                             <mat-option *ngFor="let option of insuranceOptions" [value]="option.value">
                                 {{ option.value }}
                             </mat-option>
@@ -151,7 +161,7 @@
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
                         <input matInput [matDatepicker]="picker" placeholder="วันจดทะเบียน" readonly
-                            (click)="picker.open()">
+                            (click)="picker.open()" [(ngModel)]="registrationDate">
                         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
@@ -163,7 +173,8 @@
                 <div class="form-label">เฉลี่ยไมล์ต่อเชื้อเพลิง</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <input matInput placeholder="เฉลี่ยไมล์ต่อเชื้อเพลิง">
+                        <input matInput placeholder="เฉลี่ยไมล์ต่อเชื้อเพลิง" [(ngModel)]="avgMilePerFuel"
+                            type="number">
                     </mat-form-field>
                     <div class="action-btn-spacer"></div>
                 </div>
@@ -173,7 +184,8 @@
                 <div class="form-label">ค่าบำรุงรักษาต่อกิโลเมตร</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <input matInput placeholder="ค่าบำรุงรักษาต่อกิโลเมตร">
+                        <input matInput placeholder="ค่าบำรุงรักษาต่อกิโลเมตร" [(ngModel)]="maintenanceCostPerKm"
+                            type="number">
                     </mat-form-field>
                     <div class="action-btn-spacer"></div>
                 </div>
@@ -183,7 +195,7 @@
                 <div class="form-label">ค่ายางรถต่อกิโลเมตร</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <input matInput placeholder="ค่ายางรถต่อกิโลเมตร">
+                        <input matInput placeholder="ค่ายางรถต่อกิโลเมตร" [(ngModel)]="tireCostPerKm" type="number">
                     </mat-form-field>
                     <div class="action-btn-spacer"></div>
                 </div>
@@ -193,7 +205,7 @@
                 <div class="form-label">Mileage</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <input matInput placeholder="Mileage">
+                        <input matInput placeholder="Mileage" [(ngModel)]="mileage" type="number">
                     </mat-form-field>
                     <div class="action-btn-spacer"></div>
                 </div>
@@ -203,7 +215,7 @@
                 <div class="form-label">Last Mileage</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <input matInput placeholder="Last Mileage">
+                        <input matInput placeholder="Last Mileage" [(ngModel)]="lastMileage" type="number">
                     </mat-form-field>
                     <div class="action-btn-spacer"></div>
                 </div>
@@ -213,7 +225,7 @@
                 <div class="form-label">ความกว้างของตู้</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <input matInput placeholder="ความกว้างของตู้">
+                        <input matInput placeholder="ความกว้างของตู้" [(ngModel)]="containerWidth" type="number">
                     </mat-form-field>
                     <div class="action-btn-spacer"></div>
                 </div>
@@ -223,7 +235,7 @@
                 <div class="form-label">ความยาวของตู้</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <input matInput placeholder="ความยาวของตู้">
+                        <input matInput placeholder="ความยาวของตู้" [(ngModel)]="containerLength" type="number">
                     </mat-form-field>
                     <div class="action-btn-spacer"></div>
                 </div>
@@ -233,7 +245,7 @@
                 <div class="form-label">ความสูงของตู้</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <input matInput placeholder="ความสูงของตู้">
+                        <input matInput placeholder="ความสูงของตู้" [(ngModel)]="containerHeight" type="number">
                     </mat-form-field>
                     <div class="action-btn-spacer"></div>
                 </div>
@@ -243,7 +255,7 @@
                 <div class="form-label">น้ำหนักของรถ(kg)</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <input matInput placeholder="น้ำหนักของรถ">
+                        <input matInput placeholder="น้ำหนักของรถ" [(ngModel)]="carWeight" type="number">
                     </mat-form-field>
                     <div class="action-btn-spacer"></div>
                 </div>
@@ -253,13 +265,13 @@
                 <div class="form-label">CBM</div>
                 <div class="form-input-group">
                     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                        <input matInput placeholder="CBM">
+                        <input matInput placeholder="CBM" [(ngModel)]="cbm" type="number">
                     </mat-form-field>
                     <div class="action-btn-spacer"></div>
                 </div>
             </div>
 
-            <div class="form-container upload-container">
+            <div class="form-container">
                 <div class="form-label">Upload File</div>
                 <div class="form-input-group file-upload-group">
                     <input type="file" #fileInput hidden (change)="onFileSelected($event)" multiple>
@@ -268,6 +280,7 @@
                         <mat-icon>upload_file</mat-icon>
                         <span>Choose Files...</span>
                     </button>
+                    <div class="action-btn-spacer"></div>
                 </div>
 
                 <div class="file-stack" *ngIf="files.length > 0">

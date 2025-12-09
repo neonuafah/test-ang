@@ -22,6 +22,33 @@ import { AddOptionModalComponent } from '../add-option-modal/add-option-modal.co
 export class AddCarRegistrationForm implements OnInit {
   files: File[] = [];
 
+  // Form data properties
+  vehicleNumber: string = '';
+  branch: string = '';
+  truckType: string = '';
+  brand: string = '';
+  company: string = '';
+  engineNumber: string = '';
+  chassisNumber: string = '';
+  color: string = '';
+  fuelType: string = '';
+  model: string = '';
+  carryWeight: number | null = null;
+  insurance: string = '';
+  registrationDate: Date | null = null;
+  renewalDate: Date | null = null;
+  expirationDate: Date | null = null;
+  avgMilePerFuel: number | null = null;
+  maintenanceCostPerKm: number | null = null;
+  tireCostPerKm: number | null = null;
+  mileage: number | null = null;
+  lastMileage: number | null = null;
+  containerWidth: number | null = null;
+  containerLength: number | null = null;
+  containerHeight: number | null = null;
+  carWeight: number | null = null;
+  cbm: number | null = null;
+
   // Dropdown Options
   branchOptions: any[] = [];
   truckTypeOptions: any[] = [];
@@ -74,6 +101,38 @@ export class AddCarRegistrationForm implements OnInit {
       width: '400px',
       data: { category, title }
     });
+  }
+
+  // Get form data for parent component
+  getFormData() {
+    return {
+      vehicleNumber: this.vehicleNumber,
+      branch: this.branch,
+      truckType: this.truckType,
+      brand: this.brand,
+      company: this.company,
+      engineNumber: this.engineNumber,
+      chassisNumber: this.chassisNumber,
+      color: this.color,
+      fuelType: this.fuelType,
+      model: this.model,
+      carryWeight: this.carryWeight,
+      insurance: this.insurance,
+      registrationDate: this.registrationDate,
+      renewalDate: this.renewalDate,
+      expirationDate: this.expirationDate,
+      avgMilePerFuel: this.avgMilePerFuel,
+      maintenanceCostPerKm: this.maintenanceCostPerKm,
+      tireCostPerKm: this.tireCostPerKm,
+      mileage: this.mileage,
+      lastMileage: this.lastMileage,
+      containerWidth: this.containerWidth,
+      containerLength: this.containerLength,
+      containerHeight: this.containerHeight,
+      carWeight: this.carWeight,
+      cbm: this.cbm,
+      files: this.files.map(f => f.name)
+    };
   }
 
   // ทำงานเมื่อมีการเลือกไฟล์

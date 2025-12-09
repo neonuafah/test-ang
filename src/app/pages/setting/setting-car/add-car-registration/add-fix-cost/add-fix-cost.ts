@@ -34,35 +34,7 @@ export class AddFixCost {
     'actions'
   ];
 
-  fixCosts: FixCostData[] = [
-    {
-      type: 'ค่าผ่อนรถ',
-      calculationStartDate: new Date('2024-01-01'),
-      price: 15000,
-      startDate: new Date('2024-01-01'),
-      endDate: new Date('2024-12-31'),
-      document: null,
-      documentName: ''
-    },
-    {
-      type: 'ค่าประกันภัย',
-      calculationStartDate: new Date('2024-02-15'),
-      price: 25000.50,
-      startDate: new Date('2024-02-15'),
-      endDate: new Date('2025-02-14'),
-      document: null,
-      documentName: 'insurance_policy.pdf'
-    },
-    {
-      type: 'ค่าภาษี',
-      calculationStartDate: new Date('2024-03-10'),
-      price: 3500,
-      startDate: new Date('2024-03-10'),
-      endDate: new Date('2025-03-09'),
-      document: null,
-      documentName: ''
-    }
-  ];
+  fixCosts: FixCostData[] = [];
 
   constructor(
     private dialog: MatDialog,
@@ -89,6 +61,18 @@ export class AddFixCost {
   deleteRow(index: number): void {
     this.fixCosts = this.fixCosts.filter((_, i) => i !== index);
     this.cdr.markForCheck();
+  }
+
+  // Get fix costs for parent component
+  getFixCosts(): FixCostData[] {
+    return this.fixCosts.map(cost => ({
+      type: cost.type,
+      calculationStartDate: cost.calculationStartDate,
+      price: cost.price,
+      startDate: cost.startDate,
+      endDate: cost.endDate,
+      documentName: cost.documentName
+    })) as FixCostData[];
   }
 }
 

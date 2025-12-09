@@ -2,7 +2,7 @@
     <div class="page-header">
         <h2 class="page-header-title">รายการ ทะเบียนรถ</h2>
         <button mat-button color="primary" class="add-btn" routerLink="/setting/car/add-car-registration">
-            <mat-icon>add</mat-icon> เพิ่มทะเบียนรถ
+            <mat-icon>add</mat-icon> เพิ่ม ทะเบียนรถ
         </button>
     </div>
 
@@ -18,32 +18,110 @@
     </div>
 
     <div class="table-section">
-        <!--<div class="table-container mat-elevation-z8">
-            <table mat-table [dataSource]="data">
-                
+        <div class="table-container mat-elevation-z2">
+            <table mat-table [dataSource]="carRegistrations">
+
                 <ng-container matColumnDef="status">
-                    <th mat-header-cell *matHeaderCellDef> สถานะ </th>
+                    <th mat-header-cell *matHeaderCellDef> Status </th>
                     <td mat-cell *matCellDef="let element">
-                        <span [class.status-approve]="element.status === 'Approve'"
-                            [class.status-new]="element.status === 'New'" class="status-badge">
-                            {{element.status}}
+                        <span [ngClass]="{
+                            'status-badge': true,
+                            'status-available': element.status?.toLowerCase() === 'available',
+                            'status-unavailable': element.status?.toLowerCase() === 'unavailable',
+                            'status-under-repair': element.status?.toLowerCase() === 'under repair'
+                        }">
+                            {{ element.status || '-' }}
                         </span>
                     </td>
                 </ng-container>
 
-                <ng-container matColumnDef="branch">
-                    <th mat-header-cell *matHeaderCellDef> สาขา </th>
-                    <td mat-cell *matCellDef="let element"> {{element.branch}} </td>
+                <ng-container matColumnDef="vehicleNumber">
+                    <th mat-header-cell *matHeaderCellDef> Vehicle No. </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.vehicleNumber || '-' }} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="bookingNumber">
-                    <th mat-header-cell *matHeaderCellDef> Booking No. </th>
-                    <td mat-cell *matCellDef="let element"> {{element.bookingNumber}} </td>
+                <ng-container matColumnDef="fuelType">
+                    <th mat-header-cell *matHeaderCellDef> Fuel Type </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.fuelType || '-' }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="truckType">
+                    <th mat-header-cell *matHeaderCellDef> Type </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.truckType || '-' }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="brand">
+                    <th mat-header-cell *matHeaderCellDef> Brand </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.brand || '-' }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="company">
+                    <th mat-header-cell *matHeaderCellDef> Company </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.company || '-' }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="registrationDate">
+                    <th mat-header-cell *matHeaderCellDef> Registration date </th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.registrationDate ? (element.registrationDate | date:'dd/MM/yyyy') : '-' }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="registrationRemaining">
+                    <th mat-header-cell *matHeaderCellDef> Remaining (days) </th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.registrationDate ? element.registrationRemaining : '-' }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="renewalDate">
+                    <th mat-header-cell *matHeaderCellDef> Renewal date </th>
+                    <td mat-cell *matCellDef="let element" [class.date-warning]="isDateExpired(element.renewalDate)">
+                        {{ element.renewalDate ? (element.renewalDate | date:'dd/MM/yyyy') : '-' }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="renewalRemaining">
+                    <th mat-header-cell *matHeaderCellDef> Remaining (days) </th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.renewalDate ? element.renewalRemaining : '-' }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="expirationDate">
+                    <th mat-header-cell *matHeaderCellDef> Expiration Date </th>
+                    <td mat-cell *matCellDef="let element" [class.date-warning]="isDateExpired(element.expirationDate)">
+                        {{ element.expirationDate ? (element.expirationDate | date:'dd/MM/yyyy') : '-' }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="expirationRemaining">
+                    <th mat-header-cell *matHeaderCellDef> Remaining (days) </th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.expirationDate ? element.expirationRemaining : '-' }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="weight">
+                    <th mat-header-cell *matHeaderCellDef> Weight (kg) </th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.carWeight != null ? (element.carWeight | number) : '-' }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="cbm">
+                    <th mat-header-cell *matHeaderCellDef> CBM </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.cbm != null ? element.cbm : '-' }} </td>
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
-        </div>-->
+
+            <div class="empty-state" *ngIf="carRegistrations.length === 0">
+                <mat-icon>directions_car</mat-icon>
+                <p>ยังไม่มีข้อมูลทะเบียนรถ</p>
+            </div>
+        </div>
     </div>
 </div>

@@ -1,2 +1,13 @@
 <app-add-car-registration-form></app-add-car-registration-form>
 <app-add-fix-cost></app-add-fix-cost>
+
+<div class="button-container">
+    <button mat-button class="btn-cancel" (click)="onCancel()">
+        <mat-icon>close</mat-icon>
+        ยกเลิก
+    </button>
+    <button mat-raised-button class="btn-save" (click)="onSave()">
+        <mat-icon>save</mat-icon>
+        บันทึก
+    </button>
+</div>
